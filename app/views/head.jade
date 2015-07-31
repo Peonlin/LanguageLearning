@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    meta(charset="utf-8" )
+    title Homepage
+    link(rel='stylesheet', href='./styles/head.css')
+    link(rel='stylesheet', href='./styles/bootstrap.min.css')
+  body
+    div#header
+      div#logos
+        div.logo
+    block content
+
+
+script(type="text/javascript").
+  var init = 0;
+  function headAnimate(){
+    if(init<600){
+      init +=175;
+      var position = "0px  -"+init +'px';
+      document.querySelector('#logos .logo').style.backgroundPosition = position;
+      console.log(position);
+      setTimeout(headAnimate,300);
+    }
+    else
+      return;
+  }
+  headAnimate();
+script(type="application/javascript", src="scripts/bootstrap.min.js")
