@@ -1,1 +1,72 @@
-p aaa
+extend head
+
+block content
+
+  link(rel='stylesheet', href='./styles/index.css')
+  div.content
+    div#LAreaList
+      div.LALitem
+        div.area English
+        ul
+          li.course American English
+          li.course British English
+          li.course Australian English
+      div.LALitem
+        div.area Chinese
+        ul
+          li.course Beginner Chinese
+          li.course Traveller Chinese
+          li.course Business Chinese
+      div.LALitem
+        div.area Languages of East Africa
+        ul
+          li.course Swahili
+          li.course Some-other-language
+
+    //- 
+    div#content
+      div#languages
+        ul
+          li.langauage English
+          li.langauage 中文
+          li.langauage Polski
+      div#courseList
+        div Choose your course form!
+        ul
+          li.forms STARTUP
+          li.forms ABOUT
+          li.forms METHODOLOGY
+          li.forms LETSLEARN
+          li.forms PROGRESSMAP
+          li.forms INTERACTIVE
+          li.forms NARRATIVE01
+          li.forms NARRATIVE02
+          li.forms NARRATIVE03
+          li.forms NARRATIVE04
+          li.forms NARRATIVE05
+          li.forms NARRATIVE06
+          li.forms NARRATIVE07
+          li.forms NARRATIVE08
+          li.forms NARRATIVE09
+          li.forms NARRATIVE10
+          li.forms GAME
+          li.forms A_GIVEN_B_BLANK
+          li.forms A_GIVEN_B_CLOZE
+          li.forms A_CLOZE_B_GIVEN
+          li.forms UNSCRAMBLE
+          li.forms LETTER_NUMBER_MATCH
+          li.forms MULTIPLECHOICE
+          li.forms MATCHUPCLICK
+        </ul>
+
+      div#lowerRight
+        ul
+          li.lr About Augenblick
+          li.lr Methodology
+          li.lr Log in
+          li.lr Our Offer
+          li.lr Contact us
+          li.lr Quit
+
+  script(type="application/javascript", src="scripts/jquery-2.1.4.min.js")
+  script(type="text/javascript" src="./scripts/index.js")

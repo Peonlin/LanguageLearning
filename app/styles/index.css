@@ -1,0 +1,109 @@
+body{
+  background: rgb(4,4,4);
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+ul,li{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+/*-----------------------nav---------------------------*/
+#LAreaList{
+  min-width: 1280px;
+  margin: auto;
+  padding-left: 15%;
+  height: 60px;
+  background: rgb(50,50,50);
+}
+#LAreaList .LALitem{
+  float: left;
+  margin: 0px 5px;
+  position: relative;
+}
+#LAreaList .area{
+  font-size: 2em;
+  height: 60px;
+  padding: 10px 30px 0px 30px;
+}
+#LAreaList .course{
+  padding-left: 30px;
+}
+#LAreaList .LALitem:hover .area{
+  background: rgb(100,100,100);
+}
+.LALitem ul{
+  background: rgb(50,50,50);
+  display: none;
+  z-index: 100;
+}
+.LALitem ul li{
+  line-height: 2em;
+}
+.LALitem ul li:hover{
+  background: white;
+  color: black;
+}
+#LAreaList .transition-falldown{
+  position: absolute;
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: 1s height;
+}
+/*----------------------------content----------------------------*/
+#content{
+  width: 1280px;
+  margin: auto;
+}
+#content > div{
+  float: left;
+}
+/*-----------------------------languages---------------------------------/*/
+#languages{
+  width: 150px;
+  height: calc (100% - 130px);
+  position: fixed;
+  padding:20px 20px;
+  line-height: 3em;
+}
+#languages li {
+  border-bottom: 1px solid #444;
+}
+
+/*------------------------------courseList---------------------------*/
+#courseList{
+  width: 980px;
+  margin-left: 150px;
+  border-right: solid 1px rgba(255, 255, 255, 0.2);
+  padding-bottom: 50px;
+  padding-left: 45px;
+}
+#courseList div:first-child{
+  font-size: 3em;
+  line-height: 2em;
+  text-indent: 1em;
+}
+#courseList .forms{
+  width: 250px;
+  text-align: center;
+  height: 100px;
+  font-size: 14px;
+  font-family: cursive;
+  background: rgb(53, 55, 56);
+  color: white;
+  float: left;
+  word-break: break-all;
+  margin: 20px 20px;
+  padding: 40px 10px;
+  border-left: 5px solid white;
+  border-right: 5px solid white;
+}
+/*------------------------------lower right-----------------------*/
+#lowerRight{
+  padding: 20px;
+  line-height: 2em;
+  position: fixed;
+  margin-left: 1130px;
+}
