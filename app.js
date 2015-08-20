@@ -28,7 +28,13 @@ app.use(express.static(path.join(__dirname, 'app')));
 app.get('/', function (req, res) {
     res.render("index.jade", {title: "test"});
 });
+app.get('/login', function (req, res) {
+  res.render("login.jade",{title: "login"});
+});
 
+app.get('/register', function(req, res) {
+  res.render("register.jade",{title: 'Register'});
+});
 
 server.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));

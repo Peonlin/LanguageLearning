@@ -2,7 +2,7 @@ doctype html
 html
   head
     meta(charset="utf-8" )
-    title Homepage
+    title #{title}
     link(rel='stylesheet', href='./styles/head.css')
     link(rel='stylesheet', href='./styles/bootstrap.min.css')
   body
@@ -26,4 +26,6 @@ script(type="text/javascript").
       return;
   }
   headAnimate();
+
+script(type="application/javascript", src="scripts/jquery-2.1.4.min.js")
 script(type="application/javascript", src="scripts/bootstrap.min.js")
