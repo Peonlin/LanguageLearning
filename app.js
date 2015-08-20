@@ -29,13 +29,15 @@ app.get('/', function (req, res) {
     res.render("index.jade", {title: "test"});
 });
 app.get('/login', function (req, res) {
-  res.render("login.jade",{title: "login"});
+  res.render("login.jade",{title: "Sign in"});
 });
 
 app.get('/register', function(req, res) {
   res.render("register.jade",{title: 'Register'});
 });
-
+app.get('/unscramble', function(req, res) {
+  res.render("unscramble.jade",{title: 'Unscramble'});
+});
 server.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });

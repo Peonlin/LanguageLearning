@@ -1,4 +1,22 @@
 extend head
 
 block content
-  div adfasdf
+
+  link(rel='stylesheet', href='./styles/unscramble.css')
+  div.content
+    div.part
+      div.num 1
+      div.text 
+        div.plain where are you going in the afternoon?
+        img.horn(src="../imgs/icon_sound.png" )
+      input(type="text", placeholder="Type your answer here!")
+      div.scrambled
+        span.piece going
+        span.piece school
+        span.piece am
+        span.piece I
+        span.piece to
+
+  script(type="application/javascript", src="scripts/jquery-2.1.4.min.js")
+  script(type="application/javascript", src="scripts/unscramble.js")
+

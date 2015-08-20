@@ -1,0 +1,49 @@
+.content{
+  background: rgb(4,4,4);
+  width: 100%;
+  height: auto;
+  padding: 100px 0px;
+}
+.part{
+  width: 1000px;
+  margin: auto;
+  padding: 0px 30px;
+}
+.part .num{
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+.part input[type="text"]{
+  width: 100%;
+  line-height: 2.5em;
+  text-indent: 1em;
+  border-radius: 5px;
+}
+.text{
+  position: relative;
+}
+.text .plain{
+  line-height: 2em;
+  font-family: cursive;
+  font-size: 1.5em;
+  color: white;
+  cursor: pointer;
+}
+.horn{
+  height: 20px;
+  position: absolute;
+  top: 0px;
+  right: 20px;
+}
+.scrambled{
+  margin: 20px 0px;
+}
+.scrambled .piece{
+  background-color: rgb(58, 58, 58);
+  margin-left: 10px;
+  text-align: center;
+  padding: 10px 20px;
+  color: white;
+  cursor: pointer;
+}
