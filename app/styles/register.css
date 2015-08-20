@@ -1,0 +1,34 @@
+.content{
+  background: rgb(4,4,4);
+  width: 100%;
+  height: auto;
+  padding: 100px 0px;
+}
+.register{
+  width: 500px;
+  height: 550px;
+  border: solid 7px rgb(42,42,42);
+  border-radius: 5px;
+  background-color: rgb(238,238,238);
+  color: rgb(175,175,175);
+  margin: 0px calc(50% - 250px);
+  padding: 30px;
+}
+.top{
+  font-size: 33px;
+  text-align: center;
+  font-family: cursive;
+  margin-bottom: 20px;
+}
+.info{
+  border-top: solid 1px rgb(200,200,200);
+  padding-top: 10px;
+}
+.tips{
+  line-height: 38px;
+}
+.btn{
+  margin: 10px 40%;
+  width: 90px;
+  height: 40px;
+}

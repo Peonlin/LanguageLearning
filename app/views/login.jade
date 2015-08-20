@@ -1,0 +1,18 @@
+extend head
+
+block content
+
+  link(rel='stylesheet', href='./styles/login.css')
+  div.content
+    form.login(action="/login",method="post")
+      div.top
+        div Log In
+      div.form
+        input(type="text" class="form-control" required="required" name='username' placeholder='User name')
+        br
+        input(type="password" class="form-control" required="required" name="password" placeholder="password")
+        br
+        div.forget 
+          a Forget Username or Password?
+        input(type="submit" class='btn btn-primary' value="Login In")
+
