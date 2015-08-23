@@ -6,9 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var jade = require("jade");
 var server = require("http").createServer(app);
-//var routes = require('./routes/index');
+var routes = require('./routes/routes');
+var session = require('express-session');
 //var users = require('./routes/users');
-
 var app = express();
 //app.set('port', process.env.PORT || 3000);
 // view engine setup
@@ -21,23 +21,14 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  secret: 'recommand 128 bytes random string', // 建议使用 128 个字符的随机字符串
+  cookie: { maxAge: 60 * 1000 }
+}));
 app.use(express.static(path.join(__dirname, 'app')));
 
-//app.use('/', routes);
-//app.use('/users', users);
-app.get('/', function (req, res) {
-    res.render("index.jade", {title: "test"});
-});
-app.get('/login', function (req, res) {
-  res.render("login.jade",{title: "Sign in"});
-});
+app.use('/', routes);
 
-app.get('/register', function(req, res) {
-  res.render("register.jade",{title: 'Register'});
-});
-app.get('/unscramble', function(req, res) {
-  res.render("unscramble.jade",{title: 'Unscramble'});
-});
 server.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });
