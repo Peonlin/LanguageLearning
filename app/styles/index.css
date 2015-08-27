@@ -11,14 +11,15 @@ ul,li{
 }
 /*-----------------------nav---------------------------*/
 #LAreaList{
-  width: 100%;
+  width: 1024px;
   height: 60px;
+  margin: auto;
   background: rgb(50,50,50);
 }
 #LAreaList .LALitems{
-  width: 920px;
+  width: 924px;
   height: 60px;
-  margin-left: calc(50%- 480px);
+  margin-left: 50px;
   position: relative;
 }
 #LAreaList .LALitem{
@@ -105,7 +106,9 @@ ul,li{
   border-bottom: 1px solid #444;
 }
 #languages li:hover{
+  color: blue;
   cursor: pointer;
+  border-bottom: 1px solid blue;
 }
 /*------------------------------courseList---------------------------*/
 #courseList{
@@ -148,4 +151,11 @@ ul,li{
 }
 #lowerRight li:hover{
   cursor: pointer;
+}
+a.link{
+  color: white;
+}
+a.link:focus, a.link:hover{
+  color: blue;
+  text-decoration: underline;
 }
