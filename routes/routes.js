@@ -20,5 +20,6 @@ router.post("/register", user.create);
 router.post("/login", user.login);
 
 router.get('/unscramble', unscramble.open);
+router.get('/init', unscramble.init);
 
 module.exports = router;
