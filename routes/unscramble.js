@@ -16,10 +16,12 @@ var schema = new Schema({
 
 var AudioModel = mongoose.model('Audios', schema);
 var xlsx = require("node-xlsx");
-var obj = xlsx.parse("../LanguageLearning/app/excel/F1_0000.xlsx");
+var name = path.dirname(__dirname);
+var obj = xlsx.parse(name + "/app/excel/F1_0000.xlsx");
 var data = obj[0].data;
 var i = 1;
-console.log(data[1][1]);
+
+//console.log(name);
 
 exports.init = function(req, res) {
 	while (data[i].length != 0) {
