@@ -18,6 +18,7 @@ var AudioModel = mongoose.model('Audios', schema);
 var xlsx = require("node-xlsx");
 var name = path.dirname(__dirname);
 var obj = xlsx.parse(name + "/app/excel/F1_0000.xlsx");
+var audio_path = name + "/app/audio/F1_0000.mp3";
 var data = obj[0].data;
 var i = 1;
 
@@ -49,6 +50,6 @@ exports.init = function(req, res) {
 
 exports.open = function(req, res) {
 	AudioModel.find().sort({'_id': 1}).exec(function(err, audio) {
-		res.render("unscramble.jade", {title: "unscramble", audios: audio});
+		res.render("unscramble.jade", {title: "unscramble", audios: audio, audio_path: audio_path});
 	});
 };
