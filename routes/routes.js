@@ -23,4 +23,6 @@ router.get('/unscramble', unscramble.open);
 
 router.get('/init', unscramble.init);
 
+router.get('/delete', unscramble.del);
+
 module.exports = router;
