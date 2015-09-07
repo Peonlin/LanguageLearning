@@ -3,20 +3,25 @@ extend head
 block content
 
   link(rel='stylesheet', href='./styles/unscramble.css')
-  div.content
-    div.part
-      div.num 1
-      div.text 
-        div.plain #{audios[0].text}
-        img.horn(src="../imgs/icon_sound.png" )
-      input(type="text", placeholder="Type your answer here!")
-      div.scrambled
-        span.piece going
-        span.piece school
-        span.piece am
-        span.piece I
-        span.piece to
-      div.next next
+  .content
+    - each item in audios
+      .part
+        .num #{item._id}
+        .text 
+          .plain #{item.text}
+          img.horn(src="../imgs/icon_sound.png" )
+        input(type="text", placeholder="Type your answer here!")
+        .scrambled
+          span.piece going
+          span.piece school
+          span.piece am
+          span.piece I
+          span.piece to
+        .data(styles='')
+          .start #{item.start}
+          .stop #{item.stop}
+    #next next
+
 
   script(type="application/javascript", src="scripts/jquery-2.1.4.min.js")
   script(type="application/javascript", src="scripts/plugin/soundmanager2-jsmin.js")
