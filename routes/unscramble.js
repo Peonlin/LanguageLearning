@@ -9,36 +9,78 @@ db.on('error', function(error) {
 });
 var schema = new Schema({
 	_id: Number,
-    text: String,
-    start: Number,
-    stop: Number
+    _set: Number,
+    comment: String,
+    question: Number,
+    sound_1: String,
+    language_1: String,
+    top: String,
+    bottom: String,
+    font_1: String,
+    sound_2: String,
+    language_2: String,
+    U1: String,
+    U2: String,
+    U3: String,
+    U4: String,
+    U5: String,
+    U6: String,
+    U7: String,
+    U8: String,
+    U9: String,
+    font_2: String 
 });
 
-var AudioModel = mongoose.model('Audios', schema);
+var USBModel = mongoose.model('unscramble', schema);
 var xlsx = require("node-xlsx");
 var name = path.dirname(__dirname);
-var obj = xlsx.parse(name + "/app/excel/F1_0000.xlsx");
-var audio_path = name + "/app/audio/F1_0000.mp3";
+var obj = xlsx.parse(name + "/app/excel/UNSCRAMBLE.xlsx");
+//var audio_path = name + "/app/audio/F1_0000.mp3";
 var data = obj[0].data;
 var i = 1;
 
-//console.log(parseInt(data[i][1].split(":")[3]));
+console.log(data.length);
 
 exports.init = function(req, res) {
-	while (data[i].length != 0) {
-		var startArr = data[i][1].split(":");
-		var endArr = data[i][2].split(":");
-		var startTime = parseInt(startArr[0]) * 60 * 60 * 1000 + parseInt(startArr[1]) * 60 * 1000 + 
-		parseInt(startArr[2]) * 1000 + parseInt(startArr[3]);
-		var endTime = parseInt(endArr[0]) * 60 * 60 * 1000 + parseInt(endArr[1]) * 60 * 1000 + 
-		parseInt(endArr[2]) * 1000 + parseInt(endArr[3]);
-		var audio = new AudioModel({
+	while (i < data.length) {
+		var _set = data[i][0];
+		var comment = data[i][1];
+		var question = data[i][2];
+		var sound_1 = data[i][3];
+		var language_1 = data[i][4];
+		var top = data[i][5];
+		var bottom = data[i][6];
+		var font_1 = data[i][7];
+		var sound_2 = data[i][8];
+		var language_2 = data[i][9];
+		var U1 = data[i][10];
+		var U2 = data[i][11];
+		var U3
+		var usb = new USBModel({
 			_id: i,
-			text: data[i][0],
-			start: startTime,
-			stop: endTime
+		    _set: data[i][0],
+		    comment: data[i][1],
+		    question: data[i][2],
+		    sound_1: data[i][3],
+		    language_1: data[i][4],
+		    top: data[i][5],
+		    bottom: data[i][6],
+		    font_1: data[i][7],
+		    sound_2: data[i][8],
+		    language_2: data[i][9],
+		    U1: data[i][10],
+		    U2: data[i][11],
+		    U3: data[i][12],
+		    U4: data[i][13],
+		    U5: data[i][14],
+		    U6: data[i][15],
+		    U7: data[i][16],
+		    U8: data[i][17],
+		    U9: data[i][18],
+		    font_2: data[i][19] 
 		});
-		audio.save();
+		usb.save();
+		//console.log(i);
 		i++;
 	}
 	/*while (data[i].length != 0) {
@@ -55,9 +97,9 @@ exports.init = function(req, res) {
 };
 
 exports.del = function(req, res) {
-	while (data[i].length != 0) {
-		var cond = {text: data[i][0]};
-		AudioModel.remove(cond, function(err, res) {
+	while (i < data.length) {
+		var cond = {U1: data[i][10]};
+		USBModel.remove(cond, function(err, res) {
 			if (err) {
 				console.log(err);
 			}
@@ -68,8 +110,8 @@ exports.del = function(req, res) {
 };
 
 exports.open = function(req, res) {
-	AudioModel.find().sort({'_id': 1}).exec(function(err, audio) {
-		res.render("unscramble.jade", {title: "unscramble", audios: audio, audio_path: audio_path});
+	USBModel.find().sort({'_id': 1}).exec(function(err, usb) {
+		res.render("unscramble.jade", {title: "unscramble", audios: usb});
 		//res.json(audio);
 	});
 };
