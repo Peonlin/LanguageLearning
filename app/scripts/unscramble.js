@@ -65,17 +65,22 @@ function nextClick(){
   var length = $('.part').length;
   var index = 0;
   $('#next').click(function(){
-
-    //*****************************************************
-    //******************当学习完了这单元该怎么办***********
-    //****************************************************** 
-
-    if(index == $('.part').length - 1)
-      alert('Congratulations!\n You have finish this unit.');
-    else{
-      index++;
+    if(index >= length-1){
+      $('#next').css('display','none');
       $('.part').css('display','none');
-      $('.part').eq(index).css('display','block');
+      $('.finish').css('display','block');
+    }
+    else{
+      //如果还未输入
+      var part = $('.part').eq(index);
+      if(part.find('input').val().length == 0){
+        part.find('.inputTip').css('display','block');
+      }
+      else{
+        index++;
+        $('.part').css('display','none');
+        $('.part').eq(index).css('display','block');
+      }
     }
   });
 }
