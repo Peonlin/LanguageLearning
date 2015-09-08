@@ -6,6 +6,14 @@
   padding: 100px 0px;
   position: relative;
 }
+.alert{
+  width: 900px;
+  margin: auto;
+  height: 100px;
+  font-size: 20px;
+  text-indent: 1em;
+  line-height: 70px;
+}
 .part{
   width: 1000px;
   margin: auto;
@@ -17,11 +25,62 @@
   font-weight: bold;
   color: white;
 }
+.myinput{
+  position: relative;
+}
 .part input[type="text"]{
   width: 100%;
   line-height: 2.5em;
   text-indent: 1em;
   border-radius: 5px;
+}
+.inputTip{
+  display: none;
+  z-index: 999;
+}
+.uparrow{
+  border-bottom: 14px solid #fcf8e3;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  position: absolute;
+  top: 41px;
+  right: 200px;
+}
+.popoverContent{
+  position: absolute;
+  width: auto;
+  background-color: #fcf8e3;
+  color: #8a6d3b;
+  top: 55px;
+  line-height: 50px;
+  padding: 0px 40px;
+  border-radius: 3px;
+  right: 65px;
+}
+.popoverContent span{
+  font-weight: bolder;
+}
+.fadeout{
+  animation: fade 5s ease-in forwards;
+  -moz-animation: fade 5s ease-in forwards; /* Firefox */
+  -webkit-animation: fade 5s ease-in forwards;  /* Safari 和 Chrome */
+  -o-animation: fade 5s ease-in forwards; /* Opera */
+}
+@keyframes fade{
+  0%   {display: block; opacity: 1}
+  100% {display: none; opacity: 0}
+}
+@-moz-keyframe fade{
+  0%   {display: block; opacity: 1}
+  100% {display: none; opacity: 0}
+}
+@-webkit-keyframes fade{
+  0%   {display: block;opacity: 1;}
+  100% {display: none;opacity: 0;}
+}
+@-o-keyframe fade{
+  0%   {display: block; opacity: 1}
+  100% {display: none; opacity: 0}
 }
 .text{
   position: relative;
@@ -38,6 +97,10 @@
   position: absolute;
   top: 0px;
   right: 20px;
+}
+
+.part2 .horn{
+  top: 12px;
 }
 .scrambled{
   margin: 20px 0px;

@@ -4,23 +4,71 @@ block content
 
   link(rel='stylesheet', href='./styles/unscramble.css')
   .content
-    - each item in audios
-      .part
-        .num #{item._id}
-        .text 
-          .plain #{item.text}
-          img.horn(src="../imgs/icon_sound.png" )
-        input(type="text", placeholder="Type your answer here!")
-        .scrambled
-          span.piece going
-          span.piece school
-          span.piece am
-          span.piece I
-          span.piece to
-        .data(styles='')
-          .start #{item.start}
-          .stop #{item.stop}
-    #next next
+    - if (!audios)
+      .alert.alert-danger There's not questions designed yet!
+    - else
+      - each item in audios
+        - if (item.top)
+          .part.part1
+            .num #{item._id}
+            .text 
+              .plain #{item.top}
+              img.horn(src="../imgs/icon_sound.png" )
+            .myinput
+              input(type="text", placeholder="Type your answer here!")
+              .inputTip.fadeout
+                .uparrow
+                .popoverContent <span>WARNING: </span>You haven't typed your answer yet !
+            .scrambled
+              - if (item.U1)
+                span.piece #{item.U1}
+              - if (item.U2)
+                span.piece #{item.U2}
+              - if (item.U3)
+                span.piece #{item.U3}
+              - if (item.U4)
+                span.piece #{item.U4}
+              - if (item.U5)
+                span.piece #{item.U5}
+              - if (item.U6)
+                span.piece #{item.U6}
+              - if (item.U7)
+                span.piece #{item.U7}
+              - if (item.U8)
+                span.piece #{item.U8}
+              - if (item.U9)
+                span.piece #{item.U9}
+        - else
+          .part.part2
+            .num #{item._id}
+            .scrambled
+              - if (item.U1)
+                span.piece #{item.U1}
+              - if (item.U2)
+                span.piece #{item.U2}
+              - if (item.U3)
+                span.piece #{item.U3}
+              - if (item.U4)
+                span.piece #{item.U4}
+              - if (item.U5)
+                span.piece #{item.U5}
+              - if (item.U6)
+                span.piece #{item.U6}
+              - if (item.U7)
+                span.piece #{item.U7}
+              - if (item.U8)
+                span.piece #{item.U8}
+              - if (item.U9)
+                span.piece #{item.U9} 
+            .myinput
+              input(type="text", placeholder="Type your answer here!")
+              .inputTip.fadeout
+                .uparrow
+                .popoverContent <span>WARNING: </span>You haven't typed your answer yet !   
+            .text 
+              .plain #{item.bottom}
+              img.horn(src="../imgs/icon_sound.png" )  
+      #next next
 
 
   script(type="application/javascript", src="scripts/jquery-2.1.4.min.js")
