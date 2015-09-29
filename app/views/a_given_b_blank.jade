@@ -1,0 +1,44 @@
+extend head
+
+block content
+
+  link(rel='stylesheet', href='./styles/a_given_b_blank.css')
+  .container  
+    .content
+      - if(!lists)
+        .alert There's not questions designed yet!
+      - else
+        - each item in lists
+          .part
+            .interaction
+              .num #{item._id}
+              .question 
+                span.ques Qeustion : 
+                img.horn(src="../imgs/icon_sound.png" )
+                span.que &nbsp&nbsp&nbsp&nbsp&nbsp#{item.top}
+              .anwser
+                span.ques Anwser :&nbsp&nbsp&nbsp
+                img.horn(src="../imgs/icon_sound.png" )
+                &nbsp&nbsp&nbsp&nbsp&nbsp
+                input(type='text')
+            .anwsers
+              - if (item.bottom)
+                .a1 #{item.bottom}
+              - if (item.bottom_1)
+                .a1 #{item.bottom_1}
+              - if (item.bottom_2)
+                .a1 #{item.bottom_2}
+            .next Anwser
+        .proress
+          .toLearn  Items to learn : <span>3</span>
+          .learned  Items learned : <span>#{lists.length}</span>
+
+
+
+    -each i in lists
+      div #{i}
+
+
+  script(type="application/javascript", src="scripts/jquery-2.1.4.min.js")
+  script(type="application/javascript", src="scripts/plugin/soundmanager2-jsmin.js")
+  script(type="application/javascript", src="scripts/a_given_b_blank.js")
