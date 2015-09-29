@@ -47,8 +47,8 @@ exports.init = function(req, res) {
 		var question_tmp = data[i][2];
 		var a_sound_tmp = data[i][3];
 		var a_language_tmp = data[i][4];
-		var a_font_tmp = data[i][5];
-		var top_tmp = data[i][6];
+		var top_tmp = data[i][5];
+		var a_font_tmp = data[i][6];
 		var b_sound_tmp = data[i][7];
 		var b_language_tmp = data[i][8];
 		var bottom_tmp = data[i][9];
@@ -90,7 +90,7 @@ exports.init = function(req, res) {
 
 exports.del = function(req, res) {
 	while (i < data.length) {
-		var cond = {top: data[i][6]};
+		var cond = {a_language: data[i][4]};
 		aggbModel.remove(cond, function(err, res) {
 			if (err) {
 				console.log(err);
@@ -103,7 +103,7 @@ exports.del = function(req, res) {
 
 exports.open = function(req, res) {
 	aggbModel.find().sort({'_id': 1}).exec(function(err, list) {
-		res.render("a_given_b_blank.jade", {title: "A_GIVEN_B_BLANK", lists: list});
-		//res.json(list);
+		//res.render("a_given_b_blank.jade", {title: "A_GIVEN_B_BLANK", lists: list});
+		res.json(list);
 	});
 };
