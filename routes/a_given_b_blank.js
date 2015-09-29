@@ -103,7 +103,7 @@ exports.del = function(req, res) {
 
 exports.open = function(req, res) {
 	aggbModel.find().sort({'_id': 1}).exec(function(err, list) {
-		//res.render("a_given_b_blank.jade", {title: "A_GIVEN_B_BLANK", lists: list});
-		res.json(list);
+		res.render("a_given_b_blank.jade", {title: "A_GIVEN_B_BLANK", lists: list});
+		// res.json(list);
 	});
 };

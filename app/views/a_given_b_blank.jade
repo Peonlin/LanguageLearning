@@ -16,27 +16,31 @@ block content
                 span.ques Qeustion : 
                 img.horn(src="../imgs/icon_sound.png" )
                 span.que &nbsp&nbsp&nbsp&nbsp&nbsp#{item.top}
-              .anwser
-                span.ques Anwser :&nbsp&nbsp&nbsp
+              .answer
+                span.ques Answer :&nbsp&nbsp&nbsp
                 img.horn(src="../imgs/icon_sound.png" )
                 &nbsp&nbsp&nbsp&nbsp&nbsp
                 input(type='text')
-            .anwsers
+                .inputTip.fadeout
+                  .uparrow
+                  .popoverContent <span>WARNING: </span>You haven't typed your answer yet !
+            .next Answer
+            .answers
               - if (item.bottom)
                 .a1 #{item.bottom}
               - if (item.bottom_1)
                 .a1 #{item.bottom_1}
               - if (item.bottom_2)
                 .a1 #{item.bottom_2}
-            .next Anwser
-        .proress
-          .toLearn  Items to learn : <span>3</span>
+        .finish 
+          .desc <span>Congratulations ! </span> You have finished this unit.<br>
+            a.nextunit(href='nextunit') Continue to next unit?
+        .myprogress
+          .toLearn  Items to learn : <span>1</span>
           .learned  Items learned : <span>#{lists.length}</span>
 
 
 
-    -each i in lists
-      div #{i}
 
 
   script(type="application/javascript", src="scripts/jquery-2.1.4.min.js")
