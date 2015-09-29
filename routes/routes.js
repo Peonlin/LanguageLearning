@@ -3,6 +3,7 @@ var express = require('express');
 var router = express.Router();
 var user = require('./user');
 var unscramble = require('./unscramble');
+var aggb = require('./a_given_b_blank')
 router.get('/', function(req, res) {
     res.render('index.jade', { title: 'home_page'});
 });
@@ -24,5 +25,11 @@ router.get('/unscramble', unscramble.open);
 router.get('/init', unscramble.init);
 
 router.get('/delete', unscramble.del);
+
+router.get('/init_aggb', aggb.init);
+
+router.get('/a_given_b_blank', aggb.open);
+
+router.get('/delete_aggb', aggb.del);
 
 module.exports = router;
