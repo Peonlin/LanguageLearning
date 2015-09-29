@@ -31,6 +31,9 @@
 .ques{
   font-weight: bold;
 }
+.answer{
+  position: relative;
+}
 input[type=text]{
   width: 80%;
   line-height: 2.5em;
@@ -38,6 +41,65 @@ input[type=text]{
   border-radius: 5px;
   color: gray;
   font-size: 14px;
+}
+.inputTip{
+  display: none;
+  z-index: 999;
+}
+.uparrow{
+  border-bottom: 14px solid #fcf8e3;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  position: absolute;
+  top: 46px;
+  right: 200px;
+}
+.popoverContent{
+  position: absolute;
+  width: auto;
+  background-color: #fcf8e3;
+  color: #8a6d3b;
+  top: 60px;
+  line-height: 50px;
+  padding: 0px 40px;
+  border-radius: 3px;
+  right: 65px;
+}
+.popoverContent span{
+  font-weight: bolder;
+}
+.fadeout{
+  animation: fade 5s ease-in forwards;
+  -moz-animation: fade 5s ease-in forwards; /* Firefox */
+  -webkit-animation: fade 5s ease-in forwards;  /* Safari 和 Chrome */
+  -o-animation: fade 5s ease-in forwards; /* Opera */
+}
+@keyframes fade{
+  0%   {display: block; opacity: 1}
+  100% {display: none; opacity: 0}
+}
+@-moz-keyframe fade{
+  0%   {display: block; opacity: 1}
+  100% {display: none; opacity: 0}
+}
+@-webkit-keyframes fade{
+  0%   {display: block;opacity: 1;}
+  100% {display: none;opacity: 0;}
+}
+@-o-keyframe fade{
+  0%   {display: block; opacity: 1}
+  100% {display: none; opacity: 0}
+}
+.answers{
+  color: #aaa;
+  font-family: cursive;
+  font-size: 19px;
+  text-indent: 8em;
+  display: none;
+  position: absolute;
+}
+.myprogress{
+  margin-top: 120px;
 }
 .next{
   color: yellow;
@@ -48,8 +110,31 @@ input[type=text]{
   float: right;
   top: 300px;
   cursor: pointer;
-  margin-right: 88px
+  margin-right: 88px;
+  margin-top: 70px;
 }
 .next:hover{
   background: rgb(50,50,0);
+}
+.finish{
+  width: 1000px;
+  margin: auto;
+  display: none;
+}
+.finish .desc{
+  width: 900px;
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  height: 100px;
+  font-size: 20px;
+  padding: 1em 2em;
+  border-radius: 3px;
+}
+.finish .desc span{
+  font-weight: bolder;
+}
+.nextunit{
+  text-align: right;
+  display: block;
 }
