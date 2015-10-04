@@ -3,7 +3,8 @@ var express = require('express');
 var router = express.Router();
 var user = require('./user');
 var unscramble = require('./unscramble');
-var aggb = require('./a_given_b_blank')
+var aggb = require('./a_given_b_blank');
+var mc = require('./multiple_choice');
 router.get('/', function(req, res) {
     res.render('index.jade', { title: 'home_page'});
 });
@@ -32,4 +33,9 @@ router.get('/a_given_b_blank', aggb.open);
 
 router.get('/delete_aggb', aggb.del);
 
+router.get('/init_mc', mc.init);
+
+router.get('/delete_mc', mc.del);
+
+router.get('/multiple_choice', mc.open);
 module.exports = router;
