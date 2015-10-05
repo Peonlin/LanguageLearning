@@ -91,7 +91,7 @@ exports.init = function(req, res) {
 
 exports.del = function(req, res) {
 	while (i < data.length) {
-		var cond = {a_language: data[i][4]};
+		var cond = {language_1: data[i][4]};
 		mucModel.remove(cond, function(err, res) {
 			if (err) {
 				console.log(err);
@@ -104,7 +104,7 @@ exports.del = function(req, res) {
 
 exports.open = function(req, res) {
 	mucModel.find().sort({'_id': 1}).exec(function(err, list) {
-		res.render("matchupclick.jade", {title: "MATCHUPCLICK", lists: list});
-		//res.json(list);
+		//res.render("matchupclick.jade", {title: "MATCHUPCLICK", lists: list});
+		res.json(list);
 	});
 };
