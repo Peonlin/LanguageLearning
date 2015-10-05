@@ -5,6 +5,7 @@ var user = require('./user');
 var unscramble = require('./unscramble');
 var aggb = require('./a_given_b_blank');
 var mc = require('./multiple_choice');
+var muc = require('./matchupclick');
 router.get('/', function(req, res) {
     res.render('index.jade', { title: 'home_page'});
 });
@@ -38,4 +39,11 @@ router.get('/init_mc', mc.init);
 router.get('/delete_mc', mc.del);
 
 router.get('/multiple_choice', mc.open);
+
+router.get('/init_muc', muc.init);
+
+router.get('/delete_muc', muc.del);
+
+router.get('/matchupclick', muc.open);
+
 module.exports = router;
