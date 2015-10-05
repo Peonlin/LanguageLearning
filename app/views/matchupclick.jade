@@ -1,0 +1,12 @@
+extend head
+
+block content
+
+  link(rel='stylesheet', href='./styles/a_given_b_blank.css')
+  .container  
+    .content
+      - if(!lists)
+        .alert There's not questions designed yet!
+      - else
+        - each item in lists
+          div #{item}
