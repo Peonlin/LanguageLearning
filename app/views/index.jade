@@ -53,13 +53,18 @@ block content
           li.forms NARRATIVE09
           li.forms NARRATIVE10
           li.forms GAME
-          li.forms A_GIVEN_B_BLANK
+          a.forms(href = 'a_given_b_blank')
+            li A_GIVEN_B_BLANK
           li.forms A_GIVEN_B_CLOZE
-          li.forms A_CLOZE_B_GIVEN
-          li.forms UNSCRAMBLE
+          a.forms(href='a_cloze_b_given')
+            li A_CLOZE_B_GIVEN
+          a.forms(href='unscramble')
+            li UNSCRAMBLE
           li.forms LETTER_NUMBER_MATCH
-          li.forms MULTIPLECHOICE
-          li.forms MATCHUPCLICK
+          a.forms(href='multiple_choice')
+            li MULTIPLECHOICE
+          a.forms(href='matchupclick')
+            li MATCHUPCLICK
         </ul>
 
       div#lowerRight
