@@ -10,7 +10,7 @@ block content
       - else
         - each item in lists
           .part
-            div #{item}
+            .data #{item}
             .num #{item._id}
             .text 
               .plain #{item.main_sentence}
@@ -27,6 +27,14 @@ block content
                 span.piece #{item.blank_1_h3}
               -if(item.blank_1_h4)
                 span.piece #{item.blank_1_h4}
+              -if(item.blank_1_h5)
+                span.piece #{item.blank_1_h5}
+              -if(item.blank_1_h6)
+                span.piece #{item.blank_1_h6}
+              -if(item.blank_1_h7)
+                span.piece #{item.blank_1_h7}
+              -if(item.blank_1_h8)
+                span.piece #{item.blank_1_h8}
 
       #next Answer
       .finish 
