@@ -2,11 +2,50 @@ extend head
 
 block content
 
-  link(rel='stylesheet', href='./styles/a_given_b_blank.css')
-  .container  
-    .content
-      - if(!lists)
-        .alert There's not questions designed yet!
-      - else
-        - each item in lists
-          div #{item}
+  link(rel='stylesheet', href='./styles/matchupclick.css')
+  .content
+    - if (!lists)
+      .alert.alert-danger There's not questions designed yet!
+    - else
+      - each item in lists
+        - if (item.given)
+          .part
+            .data #{item}
+            .num #{item._id}
+            .text 
+              .plain #{item.given}
+              img.horn(src="../imgs/icon_sound.png" )
+            .myinput
+              input(type="text", placeholder="Type your answer here!")
+              .inputTip.fadeout
+                .uparrow
+                .popoverContent <span>WARNING: </span>You haven't typed your answer yet !
+            .scrambled
+              - if (item.p1)
+                span.piece #{item.p1}
+              - if (item.p2)
+                span.piece #{item.p2}
+              - if (item.p3)
+                span.piece #{item.p3}
+              - if (item.p4)
+                span.piece #{item.p4}
+              - if (item.p5)
+                span.piece #{item.p5}
+              - if (item.p6)
+                span.piece #{item.p6}
+              - if (item.p7)
+                span.piece #{item.p7}
+              - if (item.p8)
+                span.piece #{item.p8}
+              - if (item.p9)
+                span.piece #{item.p9}
+            .desired #{item.desired}
+      #next Answer
+      .finish 
+        .desc <span>Congratulations ! </span> You have finished this unit.<br>
+          a.nextunit(href='nextunit') Continue to next unit?
+
+  script(type="application/javascript", src="scripts/jquery-2.1.4.min.js")
+  //- script(type="application/javascript", src="scripts/plugin/soundmanager2-jsmin.js")
+  script(type="application/javascript", src="scripts/matchupclick.js")
+

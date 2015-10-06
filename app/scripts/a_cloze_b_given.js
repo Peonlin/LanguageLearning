@@ -22,7 +22,6 @@ function initial(){
   });
   $('.part input').focus(function(){
     addFocus($(this));
-    showChoice();
   });
   $('.scrambled .piece').click(function(){
     $('.active input.focus').val($(this).text());
@@ -87,23 +86,8 @@ function showInputs(){
     var text = $('.part .plain').eq(i).text();
     text = text.replace(/\[h\]/g,"<input type='text'><span class='answer'>").replace(/\[-h\]/g,'</span>');
     $('.part .plain').eq(i).html(text);
-    insertAnswer($('.part').eq(i));
   }
 };
-function showChoice(){
-  //---------------------------------------------------------------------
-  //--------------------------还未想好怎么做-----------------------------
-  //----------------------------------------------------------------------
-};
-function insertAnswer(ob){
-  var myanswer = ob.find('.answer').text();
-  var length = ob.find('.scrambled .piece').length;
-  var index = getRandomNum(0,length)
-  if(index == length)
-    $("<span class='piece'>"+ myanswer +"</span>").insertAfter(ob.find('.scrambled .piece').eq(index-1));
-  else
-  $("<span class='piece'>"+ myanswer +"</span>").insertBefore(ob.find('.scrambled .piece').eq(index));
-}
 function addActive(ob){
   $('.part').removeClass('active');
   ob.addClass('active');
@@ -111,9 +95,4 @@ function addActive(ob){
 function addFocus(ob){
   $('.part input').removeClass('focus');
   ob.addClass('focus');
-};
-function getRandomNum(Min,Max){
-  var Range = Max - Min;
-  var Rand = Math.random();
-  return(Min + Math.round(Rand * Range));
 };
