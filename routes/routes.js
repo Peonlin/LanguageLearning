@@ -6,6 +6,8 @@ var unscramble = require('./unscramble');
 var aggb = require('./a_given_b_blank');
 var mc = require('./multiple_choice');
 var muc = require('./matchupclick');
+var acbg = require('./a_cloze_b_given');
+var agbc = require('./a_given_b_cloze');
 router.get('/', function(req, res) {
     res.render('index.jade', { title: 'home_page'});
 });
@@ -45,5 +47,17 @@ router.get('/init_muc', muc.init);
 router.get('/delete_muc', muc.del);
 
 router.get('/matchupclick', muc.open);
+
+router.get('/init_acbg', acbg.init);
+
+router.get('/a_cloze_b_given', acbg.open);
+
+router.get('/delete_acbg', acbg.del);
+
+router.get('/init_agbc', agbc.init);
+
+router.get('/a_given_b_cloze', agbc.open);
+
+router.get('/delete_agbc', agbc.del);
 
 module.exports = router;
