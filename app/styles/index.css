@@ -11,7 +11,7 @@ ul,li{
 }
 /*-----------------------nav---------------------------*/
 #LAreaList{
-  width: 1024px;
+  width: 100%;
   height: 60px;
   margin: auto;
   background: rgb(50,50,50);
@@ -19,7 +19,7 @@ ul,li{
 #LAreaList .LALitems{
   width: 924px;
   height: 60px;
-  margin-left: 50px;
+  margin-left: calc(50% - 462px);
   position: relative;
 }
 #LAreaList .LALitem{
