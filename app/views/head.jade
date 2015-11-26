@@ -8,23 +8,17 @@ html
   body
     div#header
       div#logos
-        div.logo
+        div.logo.logo1
+          div.logo11
+          div.logo12
+        div.logo.logo2
+        div.logo.logo3
+          div.logo31
+          div.logo32
+          div.logo33
     block content
+  script(type="text/javascript").
 
-
-script(type="text/javascript").
-  var init = 0;
-  function headAnimate(){
-    if(init<600){
-      init +=175;
-      var position = "0px  -"+init +'px';
-      document.querySelector('#logos .logo').style.backgroundPosition = position;
-      setTimeout(headAnimate,300);
-    }
-    else
-      return;
-  }
-  headAnimate();
 
 script(type="application/javascript", src="scripts/jquery-2.1.4.min.js")
 script(type="application/javascript", src="scripts/bootstrap.min.js")
