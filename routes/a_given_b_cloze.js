@@ -93,7 +93,10 @@ exports.del = function(req, res) {
 
 exports.open = function(req, res) {
 	agbcModel.find().sort({'_id': 1}).exec(function(err, list) {
-		res.render("a_given_b_cloze.jade", {title: "A_GIVEN_B_CLOZE", lists: list});
+		if (req.session.user)
+			res.render("a_given_b_cloze.jade", {title: "A_GIVEN_B_CLOZE", lists: list});
+		else
+			res.redirect('/register');
 		//res.json(list);
 	});
 };
