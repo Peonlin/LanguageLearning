@@ -120,7 +120,7 @@
   width: 150px;
   text-align: center;
   position: absolute;
-  right: calc(50%- 450px );
+  right: calc(50% - 450px );
   top: 300px;
   cursor: pointer;
 }

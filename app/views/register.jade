@@ -4,7 +4,7 @@ block content
 
   link(rel='stylesheet', href='./styles/register.css')
   div.content
-    form.register(action="/register",method="post")
+    .register
       div.top
         div Register
       div.form
@@ -20,7 +20,14 @@ block content
           br
           input(type="password" class="form-control" required="required" name="password" placeholder="password")
           br
+        div.login
+          a(href='/login') Login?
         div.forget 
           a(href='/') Back to Main Page?
-        input(type="submit" class='btn btn-primary' value="Sign In")
+        .btn.btn-primary Sign In
+        .message 输入不可为空
 
+
+  script(type="application/javascript", src="scripts/jquery-2.1.4.min.js")
+  //- script(type="application/javascript", src="scripts/plugin/soundmanager2-jsmin.js")
+  script(type="application/javascript", src="scripts/register.js")

@@ -1,0 +1,39 @@
+extend head
+
+block content
+
+  link(rel='stylesheet', href='./styles/forget.css')
+  script()
+  .container
+    .content
+      .navs
+        .nav 1.确认账号
+          .arrow
+        .nav.disable 2.安全验证
+          .arrow
+        .nav.disable 3.重置密码
+          .arrow
+        .nav.disable 4.密码修改成功
+      .parts
+        .part.part1
+          div 请填写您需要找回的账号绑定的邮箱：
+          input(type='text' placeholder='请输入您注册的邮箱' name='email')
+          .btn.email_confirm 下一步
+          .message 用户不存在！
+        .part.part2
+          div 请填写您收到的验证码：
+          input(type='text' style='width: 322px;' name='valid' placeholder='请查收邮箱，并于15分钟内您收到的输入验证码')
+          .btn.valid_confirm 下一步
+          .message 验证码过期！
+        .part.part3
+          div 请输入新密码：
+          input(type='password' placeholder='请输入新密码' name='passwprd')
+          input(type='password' placeholder='请再次确认密码' name='passwprd_confirm')
+          .btn.valid_confirm 确定
+          .message 两次密码输入不一致！
+        .part.part4
+          div.success 密码修改成功！
+
+  script(type="application/javascript", src="scripts/jquery-2.1.4.min.js")
+  //- script(type="application/javascript", src="scripts/plugin/soundmanager2-jsmin.js")
+  script(type="application/javascript", src="scripts/forget.js")
