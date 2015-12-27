@@ -8,7 +8,7 @@ var transport = nodemailer.createTransport("smtp", {
 	}
 });
 
-exports.open = function(req, res) {
+exports.send = function(req, res) {
 	console.log(req.body.email);
 	var receiver = req.body.email;
 	var mailOptions = {
@@ -30,6 +30,6 @@ exports.open = function(req, res) {
 	transport.close();
 };
 
-exports.test = function(req, res) {
-	res.render("test.jade");
+exports.open = function(req, res) {
+	res.render("forget.jade", {title: "Find your password"});
 }
