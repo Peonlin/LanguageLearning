@@ -9,6 +9,7 @@ var muc = require('./matchupclick');
 var acbg = require('./a_cloze_b_given');
 var agbc = require('./a_given_b_cloze');
 var quit = require('./quit');
+var find = require('./find_pwd');
 var nar = require('./narrative');
 router.get('/', function(req, res) {
     res.render('index.jade', { title: 'home_page'});
@@ -65,5 +66,7 @@ router.get('/delete_agbc', agbc.del);
 router.get('/quit', quit.quit);
 
 router.get('/narrative', nar.open);
+
+router.get('/forget', find.open);
 
 module.exports = router;
