@@ -28,7 +28,17 @@
   line-height: 38px;
 }
 .btn{
-  margin: 10px 40%;
+  margin-left: 40%;
   width: 90px;
   height: 40px;
+  margin-top: 20px;
+}
+.login{
+  float: right;
+}
+.message {
+  color: red;
+  text-align: center;
+  margin-top: 10px;
+  display: none;
 }

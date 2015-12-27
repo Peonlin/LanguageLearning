@@ -4,7 +4,7 @@ block content
 
   link(rel='stylesheet', href='./styles/login.css')
   div.content
-    form.login(action="/login",method="post")
+    .login
       div.top
         div Log In
       div.form
@@ -13,6 +13,12 @@ block content
         input(type="password" class="form-control" required="required" name="password" placeholder="Password")
         br
         div.forget 
-          a Forgot Username or Password?
-        input(type="submit" class='btn btn-primary' value="Login In")
+          a(href='forget') Forgot Username or Password?
+        div.register
+          a(href='register') Register
+        .btn.btn-primary Login In
+        .message 输入不可为空
 
+  script(type="application/javascript", src="scripts/jquery-2.1.4.min.js")
+  //- script(type="application/javascript", src="scripts/plugin/soundmanager2-jsmin.js")
+  script(type="application/javascript", src="scripts/login.js")
