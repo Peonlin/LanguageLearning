@@ -104,7 +104,10 @@ exports.del = function(req, res) {
 
 exports.open = function(req, res) {
 	mcModel.find().sort({'_id': 1}).exec(function(err, list) {
-		res.render("multiple_choice.jade", {title: "multiple_choice", lists: list});
+		if (req.session.user)
+			res.render("multiple_choice.jade", {title: "multiple_choice", lists: list});
+		else
+			res.redirect('/register');
 		//res.json(list);
 	});
 };

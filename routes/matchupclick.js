@@ -104,7 +104,10 @@ exports.del = function(req, res) {
 
 exports.open = function(req, res) {
 	mucModel.find().sort({'_id': 1}).exec(function(err, list) {
-		res.render("matchupclick.jade", {title: "MATCHUPCLICK", lists: list});
+		if (req.session.user)
+			res.render("matchupclick.jade", {title: "MATCHUPCLICK", lists: list});
+		else
+			res.redirect('/register');
 		//res.json(list);
 	});
 };

@@ -8,6 +8,8 @@ var mc = require('./multiple_choice');
 var muc = require('./matchupclick');
 var acbg = require('./a_cloze_b_given');
 var agbc = require('./a_given_b_cloze');
+var quit = require('./quit');
+var nar = require('./narrative');
 router.get('/', function(req, res) {
     res.render('index.jade', { title: 'home_page'});
 });
@@ -59,5 +61,9 @@ router.get('/init_agbc', agbc.init);
 router.get('/a_given_b_cloze', agbc.open);
 
 router.get('/delete_agbc', agbc.del);
+
+router.get('/quit', quit.quit);
+
+router.get('/narrative', nar.open);
 
 module.exports = router;

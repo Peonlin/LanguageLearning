@@ -92,6 +92,7 @@ exports.init = function(req, res) {
 		});
 		i++;
 	}*/
+	console.log(req.session.user);
 	res.redirect("/");
 	
 };
@@ -111,7 +112,10 @@ exports.del = function(req, res) {
 
 exports.open = function(req, res) {
 	USBModel.find().sort({'_id': 1}).exec(function(err, usb) {
-		res.render("unscramble.jade", {title: "unscramble", audios: usb});
+		if (req.session.user)
+			res.render("unscramble.jade", {title: "unscramble", audios: usb});
+		else
+			res.redirect('/register');
 		//res.json(audio);
 	});
 };
