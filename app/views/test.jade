@@ -1,0 +1,22 @@
+extend head
+
+block content
+
+  link(rel='stylesheet', href='./styles/register.css')
+  div.content
+    form.register(action="/register",method="post")
+      div.top
+        div Register
+      div.form
+        div.info
+          div.tips Enter Your personal info
+          input(type="email" class="form-control" required="required" name='email' placeholder='E-mail' id = "email")
+          br
+          input(type="text" class="form-control" name="validate" placeholder="valid_num" id = "valid")
+          br
+        
+        input(type="submit" class='btn btn-primary' value="get")
+
+    button(id = 'get_num' class='btn btn-primary' value="send")
+    script(type="application/javascript", src="scripts/jquery-2.1.4.min.js")
+    script(type="application/javascript", src="scripts/test.js")
