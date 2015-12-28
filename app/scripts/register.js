@@ -13,18 +13,23 @@ $(document).ready(function() {
       type: 'post',
       data: {
         email:$('input[name=email]').val(),
-        phoe:$('input[name=phone]').val(),
+        phone:$('input[name=phone]').val(),
         username:$('input[name=username]').val(),
         password: md5('UserName:' + $('input[name=username]').val() + ';Password:' + $('input[name=password]').val())
       },
     })
     .done(function(result) {
-      if(result.message == 'success')
+      if(result.message == 'success') {
         window.location.href = '/';
-      else
+        console.log('111');
+      }
+      else {
+        console.log('11');
         showMessage(result.err);
+      }
     })
     .fail(function(result) {
+      console.log('123');
       showMessage(JSON.stringify(result));
     });
   }

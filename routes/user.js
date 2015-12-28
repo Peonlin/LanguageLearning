@@ -29,9 +29,9 @@ exports.create = function (req, res) {
             if (err) {
                 return res.json({err:err});
             }
-            console.log(req.session.user);
+            console.log(req.body);
             req.session.user = user;
-            res.redirect("/");
+            return res.json({message: 'success'});
         });
     });
 
@@ -45,10 +45,10 @@ exports.login = function (req, res) {
             return res.json({err:'用户名不存在'});
         }
         if (user.password != req.body.password) {
-            console.log(req.body.password);
+            //console.log(req.body.password);
             return res.json({err:'密码错误'});
         }
         req.session.user = user;
-        res.redirect("/");
+        res.json({message: 'success'});
     });
 };

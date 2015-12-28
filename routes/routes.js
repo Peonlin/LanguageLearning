@@ -16,7 +16,10 @@ router.get('/', function(req, res) {
 });
 
 router.get('/login', function (req, res) {
-  res.render("login.jade",{title: "login"});
+	if (req.session.user)
+		res.render("back_to_index.jade", {title: "test"});
+	else
+  		res.render("login.jade",{title: "login"});
 });
 
 router.get('/register', function(req, res) {
