@@ -106,7 +106,8 @@ exports.open = function(req, res) {
 		if (req.session.user)
 			res.render("a_given_b_blank.jade", {title: "A_GIVEN_B_BLANK", lists: list});
 		else
-			res.redirect('/register');
+			res.render("a_given_b_blank.jade", {title: "A_GIVEN_B_BLANK", lists: list});
+			// res.redirect('/register');
 		//res.json(list);
 	});
 };
