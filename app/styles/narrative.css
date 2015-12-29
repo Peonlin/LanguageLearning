@@ -1,0 +1,62 @@
+.container{
+  background: rgb(4,4,4);
+  width: 100%;
+  height: auto;
+  padding: 20px 0px;
+}
+.content{
+  width: 1000px;
+  margin: auto;
+  color: white;
+  min-height: 452px;
+}
+.num {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+.question {
+  line-height: 2em;
+  font-family: cursive;
+  font-size: 1.5em;
+  color: white;
+  cursor: pointer;
+}
+.question span{
+  color: red;
+  font-style: italic;
+}
+.question input[type=checkbox]{
+  margin-right:10px; 
+}
+.btns {
+  float: right;
+}
+.btn {
+  color: yellow;
+  border: 1px solid yellow;
+  width: 120px;
+  text-align: center;
+  margin-left: 25px;
+  cursor: pointer;
+}
+.btn:hover {
+  background: rgb(50,50,0);
+  color: yellow;
+}
+.myprogress {
+  line-height: 40px;
+  font-size: 18px;
+}
+.myprogress span{
+  margin-right: 20px;
+}
+.part{
+  display: none;
+}
+.part.active{
+  display: block;
+}
+.pictures{
+  margin-bottom: 12px;
+}
