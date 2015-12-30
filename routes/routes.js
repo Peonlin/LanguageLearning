@@ -11,6 +11,8 @@ var agbc = require('./a_given_b_cloze');
 var quit = require('./quit');
 var find = require('./find_pwd');
 var nar = require('./narrative');
+var abt = require('./about');
+var meth = require('./methodology')
 router.get('/', function(req, res) {
     res.render('index.jade', { title: 'home_page'});
 });
@@ -70,6 +72,10 @@ router.get('/quit', quit.quit);
 
 router.get('/narrative', nar.open);
 
+router.get('/about', abt.open);
+
 router.get('/forget', find.open);
+
+router.get('/methodology', meth.open);
 
 module.exports = router;
