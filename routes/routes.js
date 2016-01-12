@@ -12,7 +12,7 @@ var quit = require('./quit');
 var find = require('./find_pwd');
 var nar = require('./narrative');
 var abt = require('./about');
-var meth = require('./methodology')
+var meth = require('./methodology');
 router.get('/', function(req, res) {
     res.render('index.jade', { title: 'home_page'});
 });
@@ -77,5 +77,9 @@ router.get('/about', abt.open);
 router.get('/forget', find.open);
 
 router.get('/methodology', meth.open);
+
+router.post('/email', find.sendEmail);
+
+router.post('/changePwd', find.change);
 
 module.exports = router;

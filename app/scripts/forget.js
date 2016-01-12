@@ -24,10 +24,10 @@ $(document).ready(function() {
     $.ajax({
       url: '/email', // 向后台发送email
       type: 'post',
-      data: {emial: $('input[name=email]').val()},
+      data: {email: $('input[name=email]').val()},
     })
     .done(function(result) {
-      if(resule.message == 'success'){
+      if(result.message == 'success'){
         showPart($('.part2'));
         $('input[name=valid]').attr('valid',result.valid);
       }
@@ -41,14 +41,15 @@ $(document).ready(function() {
   };
   function sendChangePassword(){
     $.ajax({
-      url: '', // 修改密码的url
+      url: '/changePwd', // 修改密码的url
       type: 'post',
       data: {
-        password: md5('UserName:' + $('input[name=email]').val() + ';Password:' + $('input[name=password]').val())
+        username: $('input[name=username]').val(),
+        password: md5('UserName:' + $('input[name=username]').val() + ';Password:' + $('input[name=password]').val())
       },
     })
     .done(function(result) {
-      if(resule.message == 'success'){
+      if(result.message == 'success'){
         showPart($('.part4'));
       }
       else{
