@@ -13,6 +13,7 @@ var find = require('./find_pwd');
 var nar = require('./narrative');
 var abt = require('./about');
 var meth = require('./methodology');
+var excel = require('./excel');
 router.get('/', function(req, res) {
     res.render('index.jade', { title: 'home_page'});
 });
@@ -86,4 +87,5 @@ router.get('/delete_narrative', nar.del);
 
 router.get('/init_narrative', nar.init);
 
+router.get('/exportExcel', excel.open);
 module.exports = router;
