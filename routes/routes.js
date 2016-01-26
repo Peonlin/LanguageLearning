@@ -82,4 +82,8 @@ router.post('/email', find.sendEmail);
 
 router.post('/changePwd', find.change);
 
+router.get('/delete_narrative', nar.del);
+
+router.get('/init_narrative', nar.init);
+
 module.exports = router;
