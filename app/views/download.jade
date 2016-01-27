@@ -1,0 +1,21 @@
+extend head
+
+block content
+
+  //- link(rel='stylesheet', href='./styles/download.css')
+  .container 
+    p 请选择要下载数据的题型！
+    form(action='download' method='post')
+      select(name = 'select')
+        option(value='interactive') interactive
+        option(value='narrative') narrative
+        option(value='a_given_b_blank') a_given_b_blank
+        option(value='a_given_b_cloze') a_given_b_cloze
+        option(value='a_cloze_b_given') a_cloze_b_given
+        option(value='unscramble') unscramble
+        option(value='letter_number_match') letter_number_match
+        option(value='multiplechoice') multiplechoice
+        option(value='matchupclick') matchupclick
+      input(type='submit' value='确定')
+
+  script(type="application/javascript", src="scripts/jquery-2.1.4.min.js")

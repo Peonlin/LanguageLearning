@@ -99,9 +99,10 @@ exports.del = function(req, res) {
 exports.open = function(req, res) {
 	naModel.find().sort({'_id': 1}).exec(function(err, list) {
 		if (req.session.user)
-			res.render("multiple_choice.jade", {title: "multiple_choice", lists: list});
+			res.render("narrative.jade", {title: "narrative", lists: list});
 		else
-			res.redirect('/register');
+			res.render("narrative.jade", {title: "narrative", lists: list});
+			// res.redirect('/login');
 		//res.json(list);
 	});
 };

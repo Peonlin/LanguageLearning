@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+  $('.part').eq(0).addClass('active');
+  
   $('#next').click(function(){
     var index = $('.active').index();
     if(index < $('.part').length-1){
