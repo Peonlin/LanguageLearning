@@ -38,8 +38,6 @@ var obj = xlsx.parse(name + "/app/excel/MATCHUPCLICK.xlsx");
 var data = obj[0].data;
 var i = 1;
 
-console.log(data.length);
-
 exports.init = function(req, res) {
 	var set_tmp = 0;
 	var comment_tmp = "dsa";

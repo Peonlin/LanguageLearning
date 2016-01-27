@@ -14,6 +14,8 @@ var nar = require('./narrative');
 var abt = require('./about');
 var meth = require('./methodology');
 var excel = require('./excel');
+var letter = require('./letter_number_match');
+
 router.get('/', function(req, res) {
     res.render('index.jade', { title: 'home_page'});
 });
@@ -88,4 +90,11 @@ router.get('/delete_narrative', nar.del);
 router.get('/init_narrative', nar.init);
 
 router.get('/exportExcel', excel.open);
+
+router.get('/letter_number_match', letter.open);
+
+router.get('/init_letter', letter.init);
+
+router.get('/delete_letter', letter.del);
+
 module.exports = router;
