@@ -107,7 +107,7 @@ exports.open = function(req, res) {
 		if (req.session.user)
 			res.render("multiple_choice.jade", {title: "multiple_choice", lists: list});
 		else
-			res.redirect('/register');
+			res.redirect('/login');
 		//res.json(list);
 	});
 };

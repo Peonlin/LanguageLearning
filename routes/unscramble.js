@@ -115,8 +115,8 @@ exports.open = function(req, res) {
 		if (req.session.user)
 			res.render("unscramble.jade", {title: "unscramble", audios: usb});
 		else
-      res.render("unscramble.jade", {title: "unscramble", audios: usb});
-			// res.redirect('/register');
+      // res.render("unscramble.jade", {title: "unscramble", audios: usb});
+			res.redirect('/login');
 		//res.json(audio);
 	});
 };
