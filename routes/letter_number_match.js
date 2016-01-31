@@ -82,10 +82,33 @@ exports.del = function(req, res) {
 
 exports.open = function(req, res) {
 	leModel.find().sort({'_id': 1}).exec(function(err, list) {
-		/*if (req.session.user)
-			res.render("letter_number_match.jade", {title: "LETTER_NUMBER_MATCH", lists: list});
+		
+		var result = [], que = [];
+		var a = 0, flag = 0, temp = 1, i = 0;
+		while (a < list.length) {
+			if (list[a]._set == temp) {
+				que[i] = list[a];
+				a++;
+				i++;
+			}
+			else {
+				i = 0;
+				result.push({
+					"set_id": temp,
+					"question": que
+				});
+				que = [];
+				temp++;
+			}
+		}
+		result.push({
+			"set_id": temp,
+			"question": que
+		});
+		//res.json(result);
+		if (req.session.user)
+			res.render("letter_number_match.jade", {title: "LETTER_NUMBER_MATCH", lists: result});
 		else
-			res.redirect('/login');*/
-		res.json(list);
+			res.redirect('/login');
 	});
 };

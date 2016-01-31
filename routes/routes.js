@@ -97,4 +97,8 @@ router.get('/init_letter', letter.init);
 
 router.get('/delete_letter', letter.del);
 
+router.get('/download', function(req, res) {
+  res.render("download.jade",{title: 'Register'});
+});
+
 module.exports = router;
