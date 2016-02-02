@@ -1,0 +1,43 @@
+extend head
+
+block content
+
+  link(rel='stylesheet', href='./styles/letter_number_match.css')
+  .container
+    .content
+      .content1
+        - if(!lists)
+          .alert There's not questions designed yet!
+        - else
+          - each item in lists
+            .part
+              .num #{item.set_id}
+              table
+                tbody
+                  - each temp in item.question
+                    tr(_id='#{temp._id}')
+                      td #{temp._id}
+                      td(type='A')
+                        .info(_id='#{temp._id}') #{temp.part_a}
+                      td.drag(type='B')
+                        .info(_id='#{temp._id}') #{temp.part_b}
+                      - if(temp.part_c)
+                        td.drag(type='c')
+                          .info(_id='#{temp._id}') #{temp.part_c}
+              .inputTip.fadeout
+                .popoverContent <span>WARNING: </span>You haven't typed your answer yet !
+        .tip Tips: Click two items to excahnge their orders!
+        .btns
+          #answer.btn Answer
+          #next.btn.btn_right Next
+        .myprogress
+          span.toLearn  Items to learn : <span>10</span>
+            span.learned  Items learned : <span>1</span>
+      .finish 
+        .desc <span>Congratulations ! </span> You have finished this unit.<br>
+          a.nextunit(href='nextunit') Continue to next unit?
+
+
+  script(type="application/javascript", src="scripts/jquery-2.1.4.min.js")
+  //- script(type="application/javascript", src="scripts/plugin/soundmanager2-jsmin.js")
+  script(type="application/javascript", src="scripts/letter_number_match.js")

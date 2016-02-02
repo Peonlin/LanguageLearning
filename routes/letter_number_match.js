@@ -105,10 +105,11 @@ exports.open = function(req, res) {
 			"set_id": temp,
 			"question": que
 		});
-		//res.json(result);
+		// res.json(result);
 		if (req.session.user)
 			res.render("letter_number_match.jade", {title: "LETTER_NUMBER_MATCH", lists: result});
 		else
+			// res.render("letter_number_match.jade", {title: "LETTER_NUMBER_MATCH", lists: result});
 			res.redirect('/login');
 	});
 };

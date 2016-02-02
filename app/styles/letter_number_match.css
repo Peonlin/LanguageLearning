@@ -1,0 +1,167 @@
+.container{
+  background: rgb(4,4,4);
+  width: 100%;
+  height: auto;
+  padding: 20px 0px;
+}
+.content{
+  width: 1000px;
+  margin: auto;
+  color: white;
+  min-height: 452px;
+}
+.part{
+  display: none;
+}
+.part.active{
+  display: block;
+}
+.num {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+table{
+  width: 100%;
+  margin-bottom: 20px;
+}
+td:first-child{
+  width: 2em;
+  border-bottom-color: transparent;
+}
+td{
+  word-break: break-all;
+  border-bottom: solid 1px gray;
+  border-right: solid 15px #040404;
+  padding: 10px 14px 0px 14px;
+}
+td.drag{
+  cursor: pointer;
+}
+td.drag.active{
+  background-color: rgb(53, 55, 56);
+}
+td.drag.changed{
+  background: rgb(30, 31, 32);
+}
+td.drag.red{
+  color: red;
+}
+.tip {
+    color: yellow;
+    margin-top: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+.inputTip{
+  display: none;
+  z-index: 999;
+  margin-left: 400px;
+  position: relative;
+}
+.uparrow{
+  border-bottom: 14px solid #fcf8e3;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  position: absolute;
+  top: 41px;
+  left: 20px;
+}
+.popoverContent{
+  position: absolute;
+  width: auto;
+  background-color: #fcf8e3;
+  color: #8a6d3b;
+  top: 36px;
+  line-height: 50px;
+  padding: 0px 40px;
+  border-radius: 3px;
+}
+.popoverContent span{
+  font-weight: bolder;
+}
+.fadeout{
+  animation: fade 3s ease-in forwards;
+  -moz-animation: fade 3s ease-in forwards; /* Firefox */
+  -webkit-animation: fade 3s ease-in forwards;  /* Safari 和 Chrome */
+  -o-animation: fade 3s ease-in forwards; /* Opera */
+}
+@keyframes fade{
+  0%   {display: block; opacity: 1}
+  100% {display: none; opacity: 0}
+}
+@-moz-keyframe fade{
+  0%   {display: block; opacity: 1}
+  100% {display: none; opacity: 0}
+}
+@-webkit-keyframes fade{
+  0%   {display: block;opacity: 1;}
+  100% {display: none;opacity: 0;}
+}
+@-o-keyframe fade{
+  0%   {display: block; opacity: 1}
+  100% {display: none; opacity: 0}
+}
+.text{
+  position: relative;
+}
+.text .plain{
+  line-height: 2em;
+  font-family: cursive;
+  font-size: 1.5em;
+  color: white;
+  cursor: pointer;
+  margin: 20px 0px;
+  position: relative;
+}
+.btns {
+  float: right;
+}
+.btn {
+  color: yellow;
+  border: 1px solid yellow;
+  width: 120px;
+  text-align: center;
+  margin-left: 25px;
+  cursor: pointer;
+}
+.btn:hover {
+  background: rgb(50,50,0);
+  color: yellow;
+}
+.myprogress {
+  line-height: 40px;
+  font-size: 18px;
+}
+.myprogress span{
+  margin-right: 20px;
+}
+.finish{
+  display: none;
+  padding-top: 80px;
+}
+.finish .desc{
+  width: 900px;
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  height: 100px;
+  font-size: 20px;
+  padding: 1em 2em;
+  border-radius: 3px;
+}
+.finish .desc span{
+  font-weight: bolder;
+}
+.nextunit{
+  text-align: right;
+  display: block;
+}
