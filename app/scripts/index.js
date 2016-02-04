@@ -1,4 +1,4 @@
-;$(function(){
+;$(function(){ 
   $('#LAreaList .LALitem').mouseover(function(){
     $(this).find('ul').addClass('transition-falldown');
   });

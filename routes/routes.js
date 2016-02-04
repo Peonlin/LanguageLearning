@@ -15,6 +15,8 @@ var abt = require('./about');
 var meth = require('./methodology');
 var excel = require('./excel');
 var letter = require('./letter_number_match');
+var pmap = require('./progressmap');
+var letsl = require('./letslearn');
 
 router.get('/', function(req, res) {
     res.render('index.jade', { title: 'home_page'});
@@ -101,4 +103,6 @@ router.get('/download', function(req, res) {
   res.render("download.jade",{title: 'Register'});
 });
 
+router.get('/progressmap', pmap.open);
+router.get('/letslearn',letsl.open);
 module.exports = router;

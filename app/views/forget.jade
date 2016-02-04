@@ -34,7 +34,10 @@ block content
           .message 两次密码输入不一致！
         .part.part4
           div.success 密码修改成功！
-
+  script(type='text/javascript'). 
+    window.onload = function(){
+      document.querySelector('.container').style.minHeight = window.innerHeight - 175 + 'px';
+    }
   script(type="application/javascript", src="scripts/jquery-2.1.4.min.js")
   //- script(type="application/javascript", src="scripts/plugin/soundmanager2-jsmin.js")
   script(type="application/javascript", src="scripts/forget.js")

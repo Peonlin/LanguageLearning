@@ -14,6 +14,9 @@ block content
       .functions
         a(href='/') Main Menu
         a(href='/quit') Quit
-
+        
+    script(type='text/javascript'). 
+      document.querySelector('.container').style.minHeight = window.innerHeight - 175 + 'px';
+      document.querySelector('.part').style.maxHeight = window.innerHeight - 345 + 'px';  
   script(type="application/javascript", src="scripts/jquery-2.1.4.min.js")
   script(type="text/javascript" src="./scripts/methodology.js")

@@ -17,5 +17,9 @@ block content
         option(value='multiplechoice') multiplechoice
         option(value='matchupclick') matchupclick
       input(type='submit' value='确定')
-
+        
+  script(type='text/javascript'). 
+    window.onload = function(){
+      document.querySelector('.container').style.minHeight = window.innerHeight - 175 + 'px';
+    }
   script(type="application/javascript", src="scripts/jquery-2.1.4.min.js")

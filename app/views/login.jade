@@ -18,7 +18,10 @@ block content
           a(href='register') Register
         .btn.btn-primary Login In
         .message 输入不可为空
-
+  script(type='text/javascript'). 
+    window.onload = function(){
+      document.querySelector('.content').style.minHeight = window.innerHeight - 175 + 'px';
+    }
   script(type="application/javascript", src="scripts/jquery-2.1.4.min.js")
   //- script(type="application/javascript", src="scripts/plugin/soundmanager2-jsmin.js")
   script(type="application/javascript", src="scripts/login.js")

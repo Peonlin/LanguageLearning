@@ -1,0 +1,39 @@
+extend head
+
+block content
+
+  link(rel='stylesheet', href='./styles/letslearn.css')
+  link(rel='stylesheet', href='./plugins/hongselect/hongselect.min.css')
+  .container
+    .content
+      .part
+        .btn.start Start
+      .part
+        .language 
+          span I can speak
+          select#myselect1.myselect
+            option(value='0') English
+            option(value='1') Chinese
+            option(value='2') Frenche
+            option(value='3') Japanese
+          span , and I want to learn
+          select#myselect2.myselect
+            option(value='1') Chinese
+            option(value='0') English
+            option(value='2') Frenche
+            option(value='3') Japanese
+          br
+          span I am
+          select#myselect3.myselect
+            option(value='0') male
+            option(value='1') female
+
+
+  script(type="text/javascript", src="scripts/jquery-2.1.4.min.js")
+  script(type="text/javascript", src="plugins/hongselect/hongselect.min.js")  
+  script(type="text/javascript", src="scripts/letslearn.js")
+  script(type='text/javascript'). 
+    window.onload = function(){
+      document.querySelector('.container').style.minHeight = window.innerHeight - 175 + 'px';
+    }
+

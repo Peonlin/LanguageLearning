@@ -1,0 +1,41 @@
+extend head
+
+block content
+
+  link(rel='stylesheet', href='./styles/progressmap.css')
+  link(rel='stylesheet', href='./plugins/Chart-master/src/Chart.css')
+  <!--[if lte IE 8]><link rel='stylesheet', href='./plugins/Chart-master/src/excanvas2.css'></link><![endif]-->
+
+  .container  
+    .content
+      #demoCon
+        #demoConB
+          #demoInfo
+            h3#demoInfoHdr Target Weight
+            span#demoInfoSubHdr By Asset Category<br>and Asset Class
+            ul#demoLegend
+              li.dLi
+                span.colorBox(style="background-color:#76df72;") 
+                span Fixed Income
+              li.dLi
+                span.colorBox(style="background-color:#759ddf;")
+                span Equity
+              li.dLi
+                span.colorBox(style="background-color:#f1d94b;") 
+                span Real Estate
+              li.dLi
+                span.colorBox(style="background-color:#f1994a;")
+                span Alternatives
+              li.dLi
+                span.colorBox(style="background-color:#f15f5f;")
+                span Cash
+          #demoDiv
+            #demoChartDiv
+            <br>
+  script(type='text/javascript'). 
+    window.onload = function(){
+      document.querySelector('.container').style.minHeight = window.innerHeight - 175 + 'px';
+    }
+  <!--[if lte IE 8]><script src="plugins/Chart-master/src/excanvas2.js"></script><![endif]-->
+  script(type="application/javascript", src="plugins/Chart-master/src/Chart.js")  
+  script(type="application/javascript", src="scripts/progressmap.js")
