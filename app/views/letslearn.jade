@@ -29,20 +29,11 @@ block content
             option(value='1') female
 
 
-
+  script(type="text/javascript", src="scripts/jquery-2.1.4.min.js")
+  script(type="text/javascript", src="plugins/hongselect/hongselect.min.js")  
+  script(type="text/javascript", src="scripts/letslearn.js")
   script(type='text/javascript'). 
     window.onload = function(){
       document.querySelector('.container').style.minHeight = window.innerHeight - 175 + 'px';
     }
-  script(type="text/javascript", src="scripts/jquery-2.1.4.min.js")
-  script(type="text/javascript", src="plugins/hongselect/hongselect.min.js")  
-  script(type="text/javascript", src="scripts/letslearn.js")
-  script(type="text/javascript").
-    $(function(){
-        $("#myselect1").hongselect();
-        //- $("#btn_setval").click(function(){
-        //-     $("#myselect").hongselect("setSelectVal","1");
-        //- });
-    });
-
 

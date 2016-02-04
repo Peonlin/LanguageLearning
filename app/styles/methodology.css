@@ -17,6 +17,7 @@
 }
 .part{
   margin: 20px 0px;
+  overflow-y: scroll;
 }
 .part_head {
     background: #272727;
