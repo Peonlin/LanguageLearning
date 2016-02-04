@@ -1,0 +1,45 @@
+/*from the demo*/
+#demoConB{border-radius:16px;background-color:#fff;color:#1a2731;box-shadow:1px 1px 5px rgba(51, 51, 51, 0.10);}
+#demoInfo{display:inline-block;*display:inline;zoom:1;padding:30px 20px 30px 40px;vertical-align:top;}
+#demoInfoHdr{display:block;margin:0px;padding:0px;line-height:1.4em;font-weight:bold;font-size:16px;}
+#demoInfoSubHdr{display:block;line-height:1.4em;font-size:12px;}
+#demoLegend{display:block;margin:12px 0px 0px 0px;padding:0px;list-style-type:none;}
+.dLi{display:block;margin:0px 0px 3px 0px;line-height:1.5em;font-size:12px;vertical-align:middle;}
+.colorBox{display:inline-block;*display:inline;zoom:1;margin:0px 6px 3px 0px;width:9px;height:9px;border:1px solid #777;border-radius:2px;overflow:hidden;vertical-align:middle;}
+.clrBoxAlt{position:absolute;margin:1px 0px 0px -23px;}
+#demoDiv{display:inline-block;*display:inline;zoom:1;padding:20px 20px 20px 10px;width:220px;height:220px;vertical-align:top;}
+#demoChartDiv{position:relative;width:220px;height:220px;}
+
+body{
+  background: rgb(4,4,4);
+  height: 1200px;
+}
+.container{
+  background: rgb(4,4,4);
+  width: 100%;
+  height: auto;
+  min-height: 468px;
+  padding: 80px 0px;
+  color: white;
+  position: relative;
+}
+.content{
+  margin: auto;
+  background: rgb(4,4,4);
+  width: 1000px;
+  height: auto;
+  min-height: 468px;
+  position: relative;
+}
+#demoConB{
+  background-color: inherit;
+  color: white;
+}
+#demoChart{
+  width: 800px;
+  height: 800px;
+}
+#demoChartDiv{
+  width: 800px;
+  height: 800px;
+}

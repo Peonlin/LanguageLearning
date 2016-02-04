@@ -41,8 +41,10 @@ block content
             li ABOUT
           a.forms(href = 'methodology')
             li METHODOLOGY
-          li.forms LETSLEARN
-          li.forms PROGRESSMAP
+          a.forms(href = 'letslearn')
+            li LETSLEARN
+          a.forms(href = 'progressmap')
+            li PROGRESSMAP
           li.forms INTERACTIVE
           a.forms(href = 'narrative')
             li NARRATIVE
@@ -78,5 +80,9 @@ block content
           li.lr 
             a(class="link" href='/quit') Quit
 
+  script(type='text/javascript'). 
+    window.onload = function(){
+      document.querySelector('.container').style.minHeight = window.innerHeight - 175 + 'px';
+    }
   script(type="application/javascript", src="scripts/jquery-2.1.4.min.js")
   script(type="text/javascript" src="./scripts/index.js")

@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>Canvas Pie Chart with Tooltips</title>
+		<meta name="description" content="HTML canvas-based pie chart with tooltips and update animations. Open source.">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<link href="src/Chart.css" rel="stylesheet" type="text/css">
+		<link href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet" type="text/css">
+		<style>
+			HTML{margin:0px;padding:0px;min-height:100%;background-color:#5597cf;color:#eee;background-image:-webkit-linear-gradient(bottom, #80b4e1, #5597cf);background-image:-moz-linear-gradient(bottom, #80b4e1, #5597cf);background-image:-ms-linear-gradient(bottom, #80b4e1, #5597cf);background-image:-o-linear-gradient(bottom, #80b4e1, #5597cf);background-image:linear-gradient(bottom, #80b4e1, #5597cf);}
+			BODY{margin:0px;padding:0px;font-family:"Droid Sans",sans-serif;-webkit-font-smoothing:antialiased;}
+			::-webkit-scrollbar{width:12px;height:12px;}
+			::-webkit-scrollbar-thumb{border:1px solid #B8B8B8;-webkit-border-radius:0px;border-radius:0px;background:#ccc;}
+			::-webkit-scrollbar-track,::-webkit-scrollbar-corner{background:#eee;}
+			A{color:#eee;text-decoration:none;cursor:pointer;}
+			A:hover{text-decoration:underline;}
+			#hdr{display:block;margin:40px 0px 0px 80px;padding:0px;line-height:1.2em;font-size:28px;color:#fff;text-shadow:0px 1px 1px rgba(51, 51, 51, 0.1);}
+			#demoLinks{margin:0px 0px 0px 80px;line-height:1.5em;font-size:12px;}
+			#demoCon{margin:20px 0px 40px 80px;padding:16px;border:1px solid #ccc;border-radius:16px;width:600px;background-color:#eee;background-image:-webkit-linear-gradient(top, #fff 0%, rgba(255, 255, 255, 0) 2%);background-image:-moz-linear-gradient(top, #fff 0%, rgba(255, 255, 255, 0) 2%);background-image:-ms-linear-gradient(top, #fff 0%, rgba(255, 255, 255, 0) 2%);background-image:-o-linear-gradient(top, #fff 0%, rgba(255, 255, 255, 0) 2%);background-image:linear-gradient(top, #fff 0%, rgba(255, 255, 255, 0) 2%);box-shadow:1px 1px 1px rgba(51, 51, 51, 0.1);}
+			#demoConB{border-radius:16px;background-color:#fff;color:#1a2731;box-shadow:1px 1px 5px rgba(51, 51, 51, 0.10);}
+			#demoInfo{display:inline-block;*display:inline;zoom:1;padding:30px 20px 30px 40px;vertical-align:top;}
+			#demoInfoHdr{display:block;margin:0px;padding:0px;line-height:1.4em;font-weight:bold;font-size:16px;}
+			#demoInfoSubHdr{display:block;line-height:1.4em;font-size:12px;}
+			#demoLegend{display:block;margin:12px 0px 0px 0px;padding:0px;list-style-type:none;}
+			.dLi{display:block;margin:0px 0px 3px 0px;line-height:1.5em;font-size:12px;vertical-align:middle;}
+			.colorBox{display:inline-block;*display:inline;zoom:1;margin:0px 6px 3px 0px;width:9px;height:9px;border:1px solid #777;border-radius:2px;overflow:hidden;vertical-align:middle;}
+			.clrBoxAlt{position:absolute;margin:1px 0px 0px -23px;}
+			#demoDiv{display:inline-block;*display:inline;zoom:1;padding:20px 20px 20px 0px;width:210px;height:210px;vertical-align:top;}
+			#demoChartDiv{position:relative;width:210px;height:210px;}
+			#demoTableDiv{position:relative;display:inline-block;*display:inline;zoom:1;padding:20px 30px 20px 57px;cursor:default;}
+			#updateBtn{position:absolute;z-index:1;top:-10px;right:28px;display:block;font-size:12px;}
+			#demoTable{border-collapse:collapse;border-spacing:0px;font-size:12px;}
+			#demoTable th{padding:4px 6px;text-align:left;border-width:1px 0px;border-style:solid;border-color:#ddd;background-color:#f4f4f4;white-space:nowrap;}
+			#demoTable td{padding:6px;white-space:nowrap;}
+			.rOInput{margin:0px;padding:0px;border:none;text-align:right;font-size:12px;font-family:"Droid Sans",sans-serif;width:50px;vertical-align:middle;background-color:transparent;}
+			.num{padding-left:15px !important;text-align:right !important;}
+			.chartTooltip{font-size:11px;font-family:Verdana;color:#1a2731;} /* Example customization */
+		</style>
+		<!--[if lte IE 8]><style>#demoCon{width:640px;}</style><![endif]-->
+	</head>
+	<body>
+		<h1 id="hdr">Canvas Pie Chart with Tooltips</h1>
+		<div id="demoLinks">
+			<a href="http://www.matts411.com/post/canvas-pie-and-ring-charts-with-tooltips/" title="Home">Home</a>
+			 &nbsp;-&nbsp; 
+			<a href="http://github.com/mmurph211/Chart" title="GitHub">Github Project</a>
+			 &nbsp;-&nbsp; 
+			<a href="https://github.com/mmurph211/Chart/blob/master/src/Chart.js" title="View Script">Script Source</a>
+			 &nbsp;-&nbsp; 
+			<a href="https://github.com/mmurph211/Chart/blob/master/src/Chart.css" title="View CSS">CSS Source</a>
+		</div>
+		
+		<div id="demoCon">
+			<div id="demoConB">
+				<div id="demoInfo">
+					<h3 id="demoInfoHdr">Site Visitors</h3>
+					<span id="demoInfoSubHdr">By Browser</span>
+					<ul id="demoLegend">
+						<li class="dLi"><span class="colorBox" style="background-color:#759ddf;"></span> Firefox</li>
+						<li class="dLi"><span class="colorBox" style="background-color:#76df72;"></span> Internet Explorer</li>
+						<li class="dLi"><span class="colorBox" style="background-color:#f1d94b;"></span> Chrome</li>
+						<li class="dLi"><span class="colorBox" style="background-color:#f1994a;"></span> Safari</li>
+						<li class="dLi"><span class="colorBox" style="background-color:#f15f5f;"></span> Opera</li>
+						<li class="dLi"><span class="colorBox" style="background-color:#aa7be5;"></span> Other</li>
+					</ul>
+				</div>
+				<div id="demoDiv"><div id="demoChartDiv"></div></div><br>
+				
+				<div id="demoTableDiv">
+					<input id="updateBtn" type="button" value="Update" data-next="update">
+					<table id="demoTable" cellpadding="0">
+						<thead>
+							<tr>
+								<th>Browser</th>
+								<th class="num">Percent</th>
+								<th class="num">&nbsp;&nbsp;Avg. Time on Site</th>
+								<th class="num">Pages / Visit</th>
+								<th class="num">% New Visits</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><span class="colorBox clrBoxAlt" style="background-color:#759ddf;"></span> Firefox</td>
+								<td class="num"><input id="pct-0" class="rOInput" type="text" value="39.20" tabIndex="-1" readOnly></td>
+								<td class="num"><input id="avg-0" class="rOInput" type="text" value="00:01:33" tabIndex="-1" readOnly></td>
+								<td class="num">2.43</td>
+								<td class="num">64.92</td>
+							</tr>
+							<tr>
+								<td><span class="colorBox clrBoxAlt" style="background-color:#76df72;"></span> Internet Explorer</td>
+								<td class="num"><input id="pct-1" class="rOInput" type="text" value="30.58" tabIndex="-1" readOnly></td>
+								<td class="num"><input id="avg-1" class="rOInput" type="text" value="00:03:04" tabIndex="-1" readOnly></td>
+								<td class="num">2.39</td>
+								<td class="num">66.17</td>
+							</tr>
+							<tr>
+								<td><span class="colorBox clrBoxAlt" style="background-color:#f1d94b;"></span> Chrome</td>
+								<td class="num"><input id="pct-2" class="rOInput" type="text" value="22.91" tabIndex="-1" readOnly></td>
+								<td class="num"><input id="avg-2" class="rOInput" type="text" value="00:02:01" tabIndex="-1" readOnly></td>
+								<td class="num">2.28</td>
+								<td class="num">64.12</td>
+							</tr>
+							<tr>
+								<td><span class="colorBox clrBoxAlt" style="background-color:#f1994a;"></span> Safari</td>
+								<td class="num"><input id="pct-3" class="rOInput" type="text" value="3.63" tabIndex="-1" readOnly></td>
+								<td class="num"><input id="avg-3" class="rOInput" type="text" value="00:01:03" tabIndex="-1" readOnly></td>
+								<td class="num">1.44</td>
+								<td class="num">64.04</td>
+							</tr>
+							<tr>
+								<td><span class="colorBox clrBoxAlt" style="background-color:#f15f5f;"></span> Opera</td>
+								<td class="num"><input id="pct-4" class="rOInput" type="text" value="2.28" tabIndex="-1" readOnly></td>
+								<td class="num"><input id="avg-4" class="rOInput" type="text" value="00:00:48" tabIndex="-1" readOnly></td>
+								<td class="num">2.02</td>
+								<td class="num">38.18</td>
+							</tr>
+							<tr>
+								<td><span class="colorBox clrBoxAlt" style="background-color:#aa7be5;"></span> Other</td>
+								<td class="num"><input id="pct-5" class="rOInput" type="text" value="1.40" tabIndex="-1" readOnly></td>
+								<td class="num"><input id="avg-5" class="rOInput" type="text" value="00:00:14" tabIndex="-1" readOnly></td>
+								<td class="num">2.01</td>
+								<td class="num">84.53</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		
+		<!--[if lte IE 8]><script src="src/excanvas2.js"></script><![endif]-->
+		<script src="src/Chart.js"></script>
+		<script>
+			(function(window, document, undefined) {
+				"use strict";
+				
+				var chartData = [["Firefox", 39.20, "00:01:33", "#759ddf"], 
+				                 ["Internet Explorer", 30.58, "00:03:04", "#76df72"], 
+				                 ["Chrome", 22.91, "00:02:01", "#f1d94b"], 
+				                 ["Safari", 3.63, "00:01:03", "#f1994a"], 
+				                 ["Opera", 2.28, "00:00:48", "#f15f5f"], 
+				                 ["Other", 1.40, "00:00:14", "#aa7be5"]], 
+				    updateData = [["Firefox", 40.27, "00:01:41", "#759ddf"], 
+				                  ["Internet Explorer", 20.38, "00:03:12", "#76df72"], 
+				                  ["Chrome", 13.04, "00:02:21", "#f1d94b"], 
+				                  ["Safari", 12.19, "00:01:16", "#f1994a"], 
+				                  ["Opera", 10.78, "00:01:35", "#f15f5f"], 
+				                  ["Other", 3.34, "00:00:33", "#aa7be5"]];
+				
+				// Create the pie chart:
+				var pieChart = new Chart.Pie("demoChartDiv", {
+				    	showTooltips : true, 
+				    	chartMinSize : [210, 210], 
+				    	chartMaxSize : [210, 210], 
+				    	chartData : chartData
+				    });
+				
+				// Add button event to update the pie chart data set:
+				document.getElementById("updateBtn").onclick = function(event) {
+					var target = (event = event || window.event).target || event.srcElement, 
+					    isUpdate = (target.getAttribute("data-next") === "update"), 
+					    dataSet = (isUpdate) ? updateData : chartData, 
+					    doc = document, 
+					    slice, i;
+					
+					for (i=0; slice=dataSet[i]; i++) {
+						doc.getElementById("pct-" + i).value = slice[1].toFixed(2);
+						doc.getElementById("avg-" + i).value = slice[2];
+					}
+					target.setAttribute("data-next", (isUpdate) ? "revert" : "update");
+					pieChart.updateData(dataSet);
+				};
+			})(this, this.document);
+		</script>
+	</body>
+</html>
