@@ -103,6 +103,8 @@ router.get('/download', function(req, res) {
   res.render("download.jade",{title: 'Register'});
 });
 
+router.post('/download', excel.open);
+router.post('/upload', excel.upload);
 router.get('/progressmap', pmap.open);
 router.get('/letslearn',letsl.open);
 module.exports = router;
