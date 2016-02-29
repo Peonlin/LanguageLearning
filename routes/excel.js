@@ -50,27 +50,14 @@ exports.open = function(req, res, next) {
 	res.send('export successfully!');
 };
 
-/*exports.upload = function(req, res) {
-	
-	var	formidable = require('formidable'), 
-		AVATAR_UPLOAD_FOLDER = '/avatar/';
-
-	var form = new formidable.IncomingForm();   //创建上传表单
-		form.encoding = 'utf-8';		//设置编辑
-	    form.uploadDir = 'app/excel';	 //设置上传目录
-	    form.keepExtensions = true;	 //保留后缀
-	    form.maxFieldsSize = 2 * 1024 * 1024;   //文件大小
-
-    form.parse(req, function(err, fields, files) {
-	    var extName = '';  //后缀名
-
-	    var avatarName = Math.random() + '.xlsx';
-	    var newPath = form.uploadDir + avatarName;
-
-	    console.log(newPath);
-	    fs.renameSync(files.fulAvatar.path, newPath);  //重命名
+exports.upload = function(req, res) {
+	var fstream;
+    req.pipe(req.busboy);
+    req.busboy.on('file', function (fieldname, file, filename) {
+        console.log("Uploading: " + filename); 
+        fstream = fs.createWriteStream('./app/excel/' + filename);
+        file.pipe(fstream);
     });
-
-	//res.locals.success = '上传成功';
+	
 	res.send('上传成功！');	 
-} */
+} 
