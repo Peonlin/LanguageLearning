@@ -39,8 +39,6 @@ var obj = xlsx.parse(name + "/app/excel/UNSCRAMBLE.xlsx");
 var data = obj[0].data;
 var i = 1;
 
-console.log(data.length);
-
 exports.init = function(req, res) {
 	while (i < data.length) {
 		var _set = data[i][0];
@@ -80,19 +78,8 @@ exports.init = function(req, res) {
 		    font_2: data[i][19] 
 		});
 		usb.save();
-		//console.log(i);
 		i++;
 	}
-	/*while (data[i].length != 0) {
-		var cond = {text: data[i][0]};
-		AudioModel.remove(cond, function(err, res) {
-			if (err) {
-				console.log(err);
-			}
-		});
-		i++;
-	}*/
-	console.log(req.session.user);
 	res.redirect("/");
 	
 };
@@ -112,11 +99,9 @@ exports.del = function(req, res) {
 
 exports.open = function(req, res) {
 	USBModel.find().sort({'_id': 1}).exec(function(err, usb) {
-		if (req.session.user)
+		if (req.cookies.account != null)
 			res.render("unscramble.jade", {title: "unscramble", audios: usb});
 		else
-      // res.render("unscramble.jade", {title: "unscramble", audios: usb});
 			res.redirect('/login');
-		//res.json(audio);
 	});
 };

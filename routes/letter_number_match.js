@@ -32,7 +32,6 @@ var obj = xlsx.parse(name + "/app/excel/LETTER_NUMBER_MATCH.xlsx");
 var data = obj[0].data;
 var i = 1;
 
-
 exports.init = function(req, res) {
 	var set_tmp = 0;
 	var comment_tmp = "dsa";
@@ -106,7 +105,7 @@ exports.open = function(req, res) {
 			"question": que
 		});
 		// res.json(result);
-		if (req.session.user)
+		if (req.cookies.account != null)
 			res.render("letter_number_match.jade", {title: "LETTER_NUMBER_MATCH", lists: result});
 		else
 			// res.render("letter_number_match.jade", {title: "LETTER_NUMBER_MATCH", lists: result});

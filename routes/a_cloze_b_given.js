@@ -32,8 +32,6 @@ var obj = xlsx.parse(name + "/app/excel/A_CLOZE_B_GIVEN.xlsx");
 var data = obj[0].data;
 var i = 1;
 
-console.log(data.length);
-
 exports.init = function(req, res) {
 	var set_tmp = 0;
 	var comment_tmp = "dsa";
@@ -62,18 +60,9 @@ exports.init = function(req, res) {
 		    b_font: data[i][12] 
 		});
 		list.save();
-		//console.log(i);
 		i++;
 	}
-	/*while (data[i].length != 0) {
-		var cond = {text: data[i][0]};
-		AudioModel.remove(cond, function(err, res) {
-			if (err) {
-				console.log(err);
-			}
-		});
-		i++;
-	}*/
+	
 	res.redirect("/");
 	
 };
@@ -93,7 +82,7 @@ exports.del = function(req, res) {
 
 exports.open = function(req, res) {
 	acbgModel.find().sort({'_id': 1}).exec(function(err, list) {
-		if (req.session.user)
+		if (req.cookies.account != null)
 			res.render("a_cloze_b_given.jade", {title: "A_CLOZE_B_GIVEN", lists: list});
 		else
 			res.redirect('/login');

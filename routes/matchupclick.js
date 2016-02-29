@@ -71,18 +71,8 @@ exports.init = function(req, res) {
 		    font_2: data[i][18]
 		});
 		list.save();
-		//console.log(i);
 		i++;
 	}
-	/*while (data[i].length != 0) {
-		var cond = {text: data[i][0]};
-		AudioModel.remove(cond, function(err, res) {
-			if (err) {
-				console.log(err);
-			}
-		});
-		i++;
-	}*/
 	res.redirect("/");
 	
 };
@@ -102,7 +92,7 @@ exports.del = function(req, res) {
 
 exports.open = function(req, res) {
 	mucModel.find().sort({'_id': 1}).exec(function(err, list) {
-		if (req.session.user)
+		if (req.cookies.account != null)
 			res.render("matchupclick.jade", {title: "MATCHUPCLICK", lists: list});
 		else
 			res.redirect('/login');

@@ -38,7 +38,6 @@ var obj = xlsx.parse(name + "/app/excel/MULTIPLE_CHOICE.xlsx");
 var data = obj[0].data;
 var i = 1;
 
-
 exports.init = function(req, res) {
 	var set_tmp = 0;
 	var comment_tmp = "dsa";
@@ -76,15 +75,6 @@ exports.init = function(req, res) {
 		list.save();
 		i++;
 	}
-	/*while (data[i].length != 0) {
-		var cond = {text: data[i][0]};
-		AudioModel.remove(cond, function(err, res) {
-			if (err) {
-				console.log(err);
-			}
-		});
-		i++;
-	}*/
 	res.redirect("/");
 	
 };
@@ -104,10 +94,9 @@ exports.del = function(req, res) {
 
 exports.open = function(req, res) {
 	mcModel.find().sort({'_id': 1}).exec(function(err, list) {
-		if (req.session.user)
+		if (req.cookies.account != null)
 			res.render("multiple_choice.jade", {title: "multiple_choice", lists: list});
 		else
 			res.redirect('/login');
-		//res.json(list);
 	});
 };
