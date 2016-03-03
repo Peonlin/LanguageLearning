@@ -12,8 +12,8 @@ var schema = new Schema({
     _set: Number,
     comment: String,
     question: Number,
-    a_sound: String,
-    b_sound: String,
+    a_speaker: String,
+    b_speaker: String,
     a_language: String,
     b_language: String,
     top: String,
@@ -48,16 +48,16 @@ exports.init = function(req, res) {
 		    _set: _set_tmp,
 		    comment: comment_tmp,
 		    question: data[i][2],
-		    a_sound: data[i][3],
-		    a_language: data[i][4],
-		    top: data[i][5],
-		    alternative_1: data[i][10],
-		    alternative_2: data[i][11],
-		    bottom: data[i][8],
-		    a_font: data[i][6],
-		    b_sound: data[i][7],
-		    b_language: data[i][9],
-		    b_font: data[i][12] 
+		    a_speaker: data[i][6],
+		    a_language: data[i][5],
+		    top: data[i][3],
+		    alternative_1: data[i][8],
+		    alternative_2: data[i][9],
+		    bottom: data[i][7],
+		    a_font: data[i][4],
+		    b_speaker: data[i][12],
+		    b_language: data[i][11],
+		    b_font: data[i][10] 
 		});
 		list.save();
 		i++;
@@ -67,8 +67,9 @@ exports.init = function(req, res) {
 };
 
 exports.del = function(req, res) {
+	i = 1;
 	while (i < data.length) {
-		var cond = {a_language: data[i][4]};
+		var cond = {a_language: data[i][5]};
 		agbcModel.remove(cond, function(err, res) {
 			if (err) {
 				console.log(err);
