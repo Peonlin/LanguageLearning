@@ -23,8 +23,10 @@ router.get('/', function(req, res) {
 });
 
 router.get('/login', function (req, res) {
-	if (req.session.user)
-		res.render("back_to_index.jade", {title: "test"});
+	if (req.cookies.account != null) {
+		//res.render("back_to_index.jade", {title: "test"});
+		res.send("You have logged. <a href = '/'>Click here to back</a>")
+	}
 	else
   		res.render("login.jade",{title: "login"});
 });
@@ -103,6 +105,8 @@ router.get('/download', function(req, res) {
   res.render("download.jade",{title: 'Register'});
 });
 
+router.post('/download', excel.open);
+router.post('/upload', excel.upload);
 router.get('/progressmap', pmap.open);
 router.get('/letslearn',letsl.open);
 module.exports = router;

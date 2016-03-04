@@ -12,8 +12,8 @@ var schema = new Schema({
     _set: Number,
     comment: String,
     question: Number,
-    a_sound: String,
-    b_sound: String,
+    a_speaker: String,
+    b_speaker: String,
     a_language: String,
     b_language: String,
     top: String,
@@ -32,8 +32,6 @@ var obj = xlsx.parse(name + "/app/excel/A_GIVEN_B_CLOZE.xlsx");
 var data = obj[0].data;
 var i = 1;
 
-console.log(data.length);
-
 exports.init = function(req, res) {
 	var set_tmp = 0;
 	var comment_tmp = "dsa";
@@ -50,37 +48,28 @@ exports.init = function(req, res) {
 		    _set: _set_tmp,
 		    comment: comment_tmp,
 		    question: data[i][2],
-		    a_sound: data[i][3],
-		    a_language: data[i][4],
-		    top: data[i][5],
-		    alternative_1: data[i][10],
-		    alternative_2: data[i][11],
-		    bottom: data[i][8],
-		    a_font: data[i][6],
-		    b_sound: data[i][7],
-		    b_language: data[i][9],
-		    b_font: data[i][12] 
+		    a_speaker: data[i][6],
+		    a_language: data[i][5],
+		    top: data[i][3],
+		    alternative_1: data[i][8],
+		    alternative_2: data[i][9],
+		    bottom: data[i][7],
+		    a_font: data[i][4],
+		    b_speaker: data[i][12],
+		    b_language: data[i][11],
+		    b_font: data[i][10] 
 		});
 		list.save();
-		//console.log(i);
 		i++;
 	}
-	/*while (data[i].length != 0) {
-		var cond = {text: data[i][0]};
-		AudioModel.remove(cond, function(err, res) {
-			if (err) {
-				console.log(err);
-			}
-		});
-		i++;
-	}*/
 	res.redirect("/");
 	
 };
 
 exports.del = function(req, res) {
+	i = 1;
 	while (i < data.length) {
-		var cond = {a_language: data[i][4]};
+		var cond = {a_language: data[i][5]};
 		agbcModel.remove(cond, function(err, res) {
 			if (err) {
 				console.log(err);
@@ -93,7 +82,7 @@ exports.del = function(req, res) {
 
 exports.open = function(req, res) {
 	agbcModel.find().sort({'_id': 1}).exec(function(err, list) {
-		if (req.session.user)
+		if (req.cookies.account != null)
 			res.render("a_given_b_cloze.jade", {title: "A_GIVEN_B_CLOZE", lists: list});
 		else
 			res.redirect('/login');

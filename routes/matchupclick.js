@@ -12,11 +12,11 @@ var schema = new Schema({
     _set: Number,
     comment: String,
     question: String,
-    sound_1: String,
+    speaker_1: String,
     language_1: String,
     given: String,
     font_1: String,
-    sound_2: String,
+    speaker_2: String,
     language_2: String,
     desired: String,
     p1: String,
@@ -53,43 +53,34 @@ exports.init = function(req, res) {
 		    _set: _set_tmp,
 		    comment: comment_tmp,
 		    question: data[i][2],
-		    sound_1: data[i][3],
-		    language_1: data[i][4],
-		    given: data[i][5],
-		    font_1: data[i][6],
-		    sound_2: data[i][7],
-		    language_2: data[i][8],
-		    desired: data[i][9],
-		    p1: data[i][10],
-		    p2: data[i][11],
-		    p3: data[i][12],
-		    p4: data[i][13],
-		    p5: data[i][14],
-		    p6: data[i][15],
-		    p7: data[i][16],
-		    p8: data[i][17],
-		    font_2: data[i][18]
+		    speaker_1: data[i][6],
+		    language_1: data[i][5],
+		    given: data[i][3],
+		    font_1: data[i][4],
+		    sound_2: data[i][18],
+		    language_2: data[i][17],
+		    desired: data[i][7],
+		    p1: data[i][8],
+		    p2: data[i][9],
+		    p3: data[i][10],
+		    p4: data[i][11],
+		    p5: data[i][12],
+		    p6: data[i][13],
+		    p7: data[i][14],
+		    p8: data[i][15],
+		    font_2: data[i][16]
 		});
 		list.save();
-		//console.log(i);
 		i++;
 	}
-	/*while (data[i].length != 0) {
-		var cond = {text: data[i][0]};
-		AudioModel.remove(cond, function(err, res) {
-			if (err) {
-				console.log(err);
-			}
-		});
-		i++;
-	}*/
 	res.redirect("/");
 	
 };
 
 exports.del = function(req, res) {
+	i = 1;
 	while (i < data.length) {
-		var cond = {language_1: data[i][4]};
+		var cond = {language_1: data[i][5]};
 		mucModel.remove(cond, function(err, res) {
 			if (err) {
 				console.log(err);
@@ -102,7 +93,7 @@ exports.del = function(req, res) {
 
 exports.open = function(req, res) {
 	mucModel.find().sort({'_id': 1}).exec(function(err, list) {
-		if (req.session.user)
+		if (req.cookies.account != null)
 			res.render("matchupclick.jade", {title: "MATCHUPCLICK", lists: list});
 		else
 			res.redirect('/login');

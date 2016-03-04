@@ -12,12 +12,12 @@ var schema = new Schema({
     _set: Number,
     comment: String,
     question: Number,
-    sound_1: String,
+    speaker_1: String,
     language_1: String,
     top: String,
     bottom: String,
     font_1: String,
-    sound_2: String,
+    speaker_2: String,
     language_2: String,
     U1: String,
     U2: String,
@@ -39,8 +39,6 @@ var obj = xlsx.parse(name + "/app/excel/UNSCRAMBLE.xlsx");
 var data = obj[0].data;
 var i = 1;
 
-console.log(data.length);
-
 exports.init = function(req, res) {
 	while (i < data.length) {
 		var _set = data[i][0];
@@ -61,45 +59,35 @@ exports.init = function(req, res) {
 		    _set: data[i][0],
 		    comment: data[i][1],
 		    question: data[i][2],
-		    sound_1: data[i][3],
-		    language_1: data[i][4],
-		    top: data[i][5],
-		    bottom: data[i][6],
-		    font_1: data[i][7],
-		    sound_2: data[i][8],
-		    language_2: data[i][9],
-		    U1: data[i][10],
-		    U2: data[i][11],
-		    U3: data[i][12],
-		    U4: data[i][13],
-		    U5: data[i][14],
-		    U6: data[i][15],
-		    U7: data[i][16],
-		    U8: data[i][17],
-		    U9: data[i][18],
-		    font_2: data[i][19] 
+		    speaker_1: data[i][7],
+		    language_1: data[i][6],
+		    top: data[i][3],
+		    bottom: data[i][4],
+		    font_1: data[i][5],
+		    speaker_2: data[i][19],
+		    language_2: data[i][18],
+		    U1: data[i][8],
+		    U2: data[i][9],
+		    U3: data[i][10],
+		    U4: data[i][11],
+		    U5: data[i][12],
+		    U6: data[i][13],
+		    U7: data[i][14],
+		    U8: data[i][15],
+		    U9: data[i][16],
+		    font_2: data[i][17] 
 		});
 		usb.save();
-		//console.log(i);
 		i++;
 	}
-	/*while (data[i].length != 0) {
-		var cond = {text: data[i][0]};
-		AudioModel.remove(cond, function(err, res) {
-			if (err) {
-				console.log(err);
-			}
-		});
-		i++;
-	}*/
-	console.log(req.session.user);
 	res.redirect("/");
 	
 };
 
 exports.del = function(req, res) {
+	i = 1;
 	while (i < data.length) {
-		var cond = {U1: data[i][10]};
+		var cond = {language_1: data[i][6]};
 		USBModel.remove(cond, function(err, res) {
 			if (err) {
 				console.log(err);
@@ -112,11 +100,9 @@ exports.del = function(req, res) {
 
 exports.open = function(req, res) {
 	USBModel.find().sort({'_id': 1}).exec(function(err, usb) {
-		if (req.session.user)
+		if (req.cookies.account != null)
 			res.render("unscramble.jade", {title: "unscramble", audios: usb});
 		else
-      // res.render("unscramble.jade", {title: "unscramble", audios: usb});
 			res.redirect('/login');
-		//res.json(audio);
 	});
 };

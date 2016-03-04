@@ -20,17 +20,12 @@ exports.create = function (req, res) {
     var createUser = new UsersModel(req.body);
     //console.log(db);
     UsersModel.findOne({username:req.body.username}, function (err, user) {
-        /*if (err)
-            return res.json({err:err});
-        if (user) {
-            return res.json({err:"用户名已经存在"});
-        }*/
         createUser.save(function (err, user) {
             if (err) {
                 return res.json({err:err});
             }
             console.log(req.body);
-            req.session.user = user;
+            res.cookie('account', {username: req.body.username}, {maxAge: 6000000});
             return res.json({message: 'success'});
         });
     });
@@ -48,7 +43,7 @@ exports.login = function (req, res) {
             console.log(req.body.password);
             return res.json({err:'密码错误'});
         }
-        req.session.user = user;
+        res.cookie('account', {username: req.body.username}, {maxAge: 6000000});
         res.json({message: 'success'});
     });
 };

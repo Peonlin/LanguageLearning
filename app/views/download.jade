@@ -7,17 +7,19 @@ block content
     p 请选择要下载数据的题型！
     form(action='download' method='post')
       select(name = 'select')
-        option(value='interactive') interactive
-        option(value='narrative') narrative
-        option(value='a_given_b_blank') a_given_b_blank
-        option(value='a_given_b_cloze') a_given_b_cloze
-        option(value='a_cloze_b_given') a_cloze_b_given
-        option(value='unscramble') unscramble
-        option(value='letter_number_match') letter_number_match
-        option(value='multiplechoice') multiplechoice
-        option(value='matchupclick') matchupclick
+        //-option(value='inter') interactive
+        option(value='narra') narrative
+        option(value='agbb') a_given_b_blank
+        option(value='agbc') a_given_b_cloze
+        option(value='acbg') a_cloze_b_given
+        option(value='unscr') unscramble
+        option(value='l_n_m') letter_number_match
+        option(value='multichoice') multiplechoice
+        option(value='muc') matchupclick
       input(type='submit' value='确定')
-        
+    form(action = 'upload' enctype="multipart/form-data" method='post')
+      input(type='file' value='上传文件')
+      input(type='submit' value='确认')
   script(type='text/javascript'). 
     window.onload = function(){
       document.querySelector('.container').style.minHeight = window.innerHeight - 175 + 'px';

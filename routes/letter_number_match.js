@@ -12,11 +12,11 @@ var schema = new Schema({
     _set: Number,
     comment: String,
     question: String,
-    sound_a: String,
+    speaker_a: String,
     language_a: String,
     part_a: String,
     font_a: String,
-    sound_b: String,
+    speaker_b: String,
     language_b: String,
     part_b: String,
     font_b: String,
@@ -31,7 +31,6 @@ var obj = xlsx.parse(name + "/app/excel/LETTER_NUMBER_MATCH.xlsx");
 //var audio_path = name + "/app/audio/F1_0000.mp3";
 var data = obj[0].data;
 var i = 1;
-
 
 exports.init = function(req, res) {
 	var set_tmp = 0;
@@ -48,16 +47,16 @@ exports.init = function(req, res) {
 		    _set: _set_tmp,
 		    comment: comment_tmp,
 		    question: data[i][2],
-		    sound_a: data[i][3],
-		    language_a: data[i][4],
-		    part_a: data[i][5],
-		    font_a: data[i][6],
-		    sound_b: data[i][7],
-		    language_b: data[i][8],
-		    part_b: data[i][9],
-		    font_b: data[i][10],
-		    part_c: data[i][11],
-		    font_c: data[i][12]
+		    speaker_a: data[i][6],
+		    language_a: data[i][5],
+		    part_a: data[i][3],
+		    font_a: data[i][4],
+		    speaker_b: data[i][12],
+		    language_b: data[i][11],
+		    part_b: data[i][7],
+		    font_b: data[i][8],
+		    part_c: data[i][9],
+		    font_c: data[i][10]
 		});
 		list.save();
 		i++;
@@ -69,7 +68,7 @@ exports.init = function(req, res) {
 exports.del = function(req, res) {
 	var i = 1;
 	while (i < data.length) {
-		var cond = {language_a: data[i][4]};
+		var cond = {language_a: data[i][5]};
 		leModel.remove(cond, function(err, res) {
 			if (err) {
 				console.log(err);
@@ -106,7 +105,7 @@ exports.open = function(req, res) {
 			"question": que
 		});
 		// res.json(result);
-		if (req.session.user)
+		if (req.cookies.account != null)
 			res.render("letter_number_match.jade", {title: "LETTER_NUMBER_MATCH", lists: result});
 		else
 			// res.render("letter_number_match.jade", {title: "LETTER_NUMBER_MATCH", lists: result});
