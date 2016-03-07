@@ -84,7 +84,7 @@ function showNextQestion(){
 function showInputs(){
   for(var i=0;i<$('.part .plain').length;i++){
     var text = $('.part .plain').eq(i).text();
-    text = text.replace(/\[h\]/g,"<input type='text'><span class='answer'>").replace(/\[-h\]/g,'</span>');
+    text = text.replace(/\[f\]/g,"<input type='text'><span class='answer'>").replace(/\[-f\]/g,'</span>');
     $('.part .plain').eq(i).html(text);
   }
 };

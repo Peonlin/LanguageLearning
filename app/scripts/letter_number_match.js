@@ -7,14 +7,28 @@ $(document).ready(function() {
     randomOrder($('table').eq(i).find('td[type="B"]'));
     randomOrder($('table').eq(i).find('td[type="C"]'));
   }
+  $('td[type="A"]').click(function(){
+    $('td[type="A"]').removeClass('active');
+    $(this).addClass('active');
+  })
   // 给信息添加点击交换顺序的函数
   $('td.drag[type="B"]').click(function(){
-    var active = $(this).parents('table').find('td.drag.active[type="B"]');
-    exchangeTds($(this), active);
+    $('td[type="B"]').removeClass('active');
+    $(this).addClass('active');
+    var active = $(this).parents('table').find('td.active[type="A"]');
+    // 只有两列
+    if($(this).next().length == 0)
+      exchangeTds($(this), active);
+    else{
+      $(this).prev().addClass('active');
+      exchangeTds($(this), active);
+    }
   });
   $('td.drag[type="C"]').click(function(){
-    var active = $(this).parents('table').find('td.drag.active[type="C"]');
-    exchangeTds($(this), active);
+    $('td[type="C"]').removeClass('active');
+    $(this).addClass('active');
+    var active = $(this).parents('table').find('td.active[type="B"]');
+    exchangeTds($(this), active,'prevC');
   });
 
   // 点击“answer”
@@ -70,18 +84,21 @@ $(document).ready(function() {
   }
 
   // 交换两个td
-  function exchangeTds(ob,active){
-    $('td.drag').removeClass('changed red');
+  // ob 指的是被点击的节点
+  // active 指的是左列（A或B）
+  // arg == 'prevC' 表示点击的是三列的C
+  function exchangeTds(ob,active,arg){
     if(active.length>0){
-      active.removeClass('active');
+      $('td').removeClass('changed');
       active.addClass('changed');
-      ob.addClass('changed');
-      var a = active.clone(true);
-      active.html(ob.html());
+      if(arg == 'prevC')
+        active.prev().addClass('changed');
+      active.next().addClass('changed');
+      var a = active.next().clone(true);
+      active.next().html(ob.html());
       ob.html(a.html());
+      $('td').removeClass('active red');
     }
-    else
-      ob.addClass('active');
   }
 
   // 显示信息，比如“Congratulations！Answer correct!”

@@ -34,17 +34,15 @@ td{
   border-bottom: solid 1px gray;
   border-right: solid 15px #040404;
   padding: 10px 14px 0px 14px;
-}
-td.drag{
   cursor: pointer;
 }
-td.drag.active{
+td.active{
   background-color: rgb(53, 55, 56);
 }
-td.drag.changed{
+td.changed{
   background: rgb(30, 31, 32);
 }
-td.drag.red{
+td.red{
   color: red;
 }
 .tip {
