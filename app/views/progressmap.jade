@@ -3,39 +3,73 @@ extend head
 block content
 
   link(rel='stylesheet', href='./styles/progressmap.css')
-  link(rel='stylesheet', href='./plugins/Chart-master/src/Chart.css')
-  <!--[if lte IE 8]><link rel='stylesheet', href='./plugins/Chart-master/src/excanvas2.css'></link><![endif]-->
-
   .container  
     .content
-      #demoCon
-        #demoConB
-          #demoInfo
-            h3#demoInfoHdr Target Weight
-            span#demoInfoSubHdr By Asset Category<br>and Asset Class
-            ul#demoLegend
-              li.dLi
-                span.colorBox(style="background-color:#76df72;") 
-                span Fixed Income
-              li.dLi
-                span.colorBox(style="background-color:#759ddf;")
-                span Equity
-              li.dLi
-                span.colorBox(style="background-color:#f1d94b;") 
-                span Real Estate
-              li.dLi
-                span.colorBox(style="background-color:#f1994a;")
-                span Alternatives
-              li.dLi
-                span.colorBox(style="background-color:#f15f5f;")
-                span Cash
-          #demoDiv
-            #demoChartDiv
-            <br>
+      #left
+       .leftli.learned Section1
+       .leftli.learned Section2
+       .leftli.learned Section3
+       .leftli.learned.active Section4
+       .leftli.tolearn Section5
+       .leftli.tolearn Section6
+       .leftli.tolearn Section7
+       .leftli.tolearn Section8
+       .leftli.tolearn Section9
+       .leftli.tolearn Section10
+       .leftli.tolearn Section11
+       .leftli.tolearn Section12
+       .leftli.tolearn Section13
+       .leftli.tolearn Section14
+       .leftli.tolearn Section15
+       .leftli.tolearn Section16
+       .leftli.tolearn Section17
+       .leftli.tolearn Section18
+      #right
+        .right.active
+          a.rightli.learned Lesson 1
+          .rightli.learned Lesson 2
+          .rightli.learned Lesson 3
+          .rightli.learned Lesson 4
+          .rightli.learned.active Lesson 5
+          .rightli.tolearn Lesson 6
+          .rightli.tolearn Lesson 7
+          .rightli.tolearn Lesson 8
+          .rightli.tolearn Lesson 9
+          .rightli.tolearn Lesson 10
+          .rightli.tolearn Lesson 11
+          .rightli.tolearn Lesson 12
+          .rightli.tolearn Lesson 13
+          .rightli.tolearn Lesson 14
+          .rightli.tolearn Lesson 15
+          .rightli.tolearn Lesson 16
+          .rightli.tolearn Lesson 17
+          .rightli.tolearn Lesson 18
+          .rightli.tolearn Lesson 19
+          .rightli.tolearn Lesson 20
+        .right
+          .rightli.learned Lesson 1
+          .rightli.learned Lesson 2
+          .rightli.learned Lesson 3
+          .rightli.tolearn Lesson 5
+          .rightli.tolearn Lesson 6
+          .rightli.tolearn Lesson 7
+          .rightli.tolearn Lesson 8
+          .rightli.tolearn Lesson 9
+          .rightli.tolearn Lesson 10
+          .rightli.tolearn Lesson 11
+          .rightli.tolearn Lesson 12
+          .rightli.tolearn Lesson 13
+          .rightli.tolearn Lesson 14
+          .rightli.tolearn Lesson 15
+          .rightli.tolearn Lesson 16
+          .rightli.tolearn Lesson 17
+          .rightli.tolearn Lesson 18
+          .rightli.tolearn Lesson 19
+          .rightli.tolearn Lesson 20
+
   script(type='text/javascript'). 
     window.onload = function(){
       document.querySelector('.container').style.minHeight = window.innerHeight - 175 + 'px';
     }
-  <!--[if lte IE 8]><script src="plugins/Chart-master/src/excanvas2.js"></script><![endif]-->
-  script(type="application/javascript", src="plugins/Chart-master/src/Chart.js")  
+  script(type="application/javascript", src="scripts/jquery-2.1.4.min.js")
   script(type="application/javascript", src="scripts/progressmap.js")
