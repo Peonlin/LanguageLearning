@@ -1,14 +1,25 @@
+body{
+  background: rgb(4,4,4);
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+ul,li{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 .container{
   background: rgb(4,4,4);
   width: 100%;
   height: auto;
   padding: 20px 0px;
+  margin-top: 40px;
 }
 .content{
   width: 1000px;
   margin: auto;
   color: white;
-  min-height: 452px;
 }
 .num {
   font-size: 20px;
@@ -31,18 +42,21 @@
 }
 .btns {
   float: right;
+  text-align: center;
 }
 .btn {
-  color: yellow;
-  border: 1px solid yellow;
+  color: white;
+  border: 1px solid white;
   width: 120px;
   text-align: center;
-  margin-left: 25px;
+  margin: 0 15px;
   cursor: pointer;
+  display: inline-block;
+  font-size: 20px;
+  line-height: 40px;
 }
 .btn:hover {
-  background: rgb(50,50,0);
-  color: yellow;
+  background: rgb(90, 90, 74);
 }
 .myprogress {
   line-height: 40px;
