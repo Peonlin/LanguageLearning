@@ -12,9 +12,10 @@ $(document).ready(function() {
 		$('.options:visible').slideUp('200');
 		return false;
 	});
-	$('#start').click(function(){
+	$('.btn.start').click(function(){
 		$('.part').eq(0).fadeOut(1500);
 		$('.part').eq(1).fadeIn(1500);
+		console.log('adf');
 	});
 	$('#learn').click(function(){
 		var flag = true;
