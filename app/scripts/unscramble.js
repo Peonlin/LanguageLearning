@@ -8,6 +8,7 @@ $(function(){
 function initial(){
   $('.part ').css('display','none');
   $('.part:first').css('display','block');
+  texture($('#next'),$('.myprogress'));
 }
 
 // 播放MP3文件
@@ -80,7 +81,22 @@ function nextClick(){
         index++;
         $('.part').css('display','none');
         $('.part').eq(index).css('display','block');
+        $('.myprogress .learn1:last').next().addClass('learn1');
       }
     }
   });
+}
+
+// button的背景纹理和coins的纹理
+function texture(btns,coins){
+  var image = 'url(../imgs/texture/Metal_texture_0' + myramdom(1,6) +'.jpg)'
+  btns.css({
+    'background-image':image,
+    'color':'black',
+    'font-weight':'bold'
+  });
+  coins.find('.learn0').eq(0).addClass('learn1');
+}
+function myramdom(min,max){
+  return min + Math.round(Math.random() * (max - min));
 }

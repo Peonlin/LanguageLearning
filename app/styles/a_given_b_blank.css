@@ -111,6 +111,26 @@ input[type=text]{
 .myprogress{
   margin-top: 120px;
 }
+.learn0,.learn1,.learn2,.learn3{
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  margin: 5px;
+  display: inline-block;
+  background: #666;
+}
+.learn1,.learn2,.learn3{
+  background-image: url('../imgs/texture/Texture_for_coins.jpg') 
+}
+.learn1{
+  background-position: 0px 0px;
+}
+.learn2{
+  background-position: 0px -140px;
+}
+.learn3{
+  background-position: 0px 20px; 
+}
 .next{
   color: white;
   font-size: 20px;

@@ -1,6 +1,7 @@
 ;$(document).ready(function() {
   initial(); 
   addEvents();
+  texture($('.next'),$('.myprogress'));
 });
 function initial(){
   $('.part').eq(0).addClass('active');
@@ -46,7 +47,18 @@ function showNextQestion(){
     $('.finish').show();
   }
   else{
-    var num = parseInt($('.toLearn span').eq(0).text()) +1;
-    $('.toLearn span').text(num + '');
+    $('.progress .learn1:last').next().addClass('learn1');
   }
 };
+// button的背景纹理和coins的纹理
+function texture(btns,coins){
+  var image = 'url(../imgs/texture/Metal_texture_0' + myramdom(1,6) +'.jpg)'
+  btns.css({
+    'background-image':image,
+    'color':'black',
+    'font-weight':'bold'
+  });  coins.find('.learn0').eq(0).addClass('learn1');
+}
+function myramdom(min,max){
+  return min + Math.round(Math.random() * (max - min));
+}

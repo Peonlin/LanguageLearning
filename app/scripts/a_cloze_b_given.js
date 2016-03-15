@@ -1,6 +1,7 @@
 $(function(){
   initial();
   nextClick();
+  texture($('#next'),$('.myprogress'));
 });
 
 // 初始化
@@ -77,6 +78,7 @@ function showNextQestion(){
   else{
     next.show();
     addActive(next);
+    $('.myprogress .learn1:last').next().addClass('learn1');
     addFocus(next.find('input').eq(0));
   }
 };
@@ -96,3 +98,17 @@ function addFocus(ob){
   $('.part input').removeClass('focus');
   ob.addClass('focus');
 };
+
+// button的背景纹理和coins的纹理
+function texture(btns,coins){
+  var image = 'url(../imgs/texture/Metal_texture_0' + myramdom(1,6) +'.jpg)'
+  btns.css({
+    'background-image':image,
+    'color':'black',
+    'font-weight':'bold'
+  });
+  coins.find('.learn0').eq(0).addClass('learn1');
+}
+function myramdom(min,max){
+  return min + Math.round(Math.random() * (max - min));
+}

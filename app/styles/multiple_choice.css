@@ -57,6 +57,7 @@ ul,li{
   border: none;
   border-bottom: solid 1px white;
   text-align: center;
+  color: white;
 }
 .inputTip{
   display: none;
@@ -180,4 +181,30 @@ ul,li{
 .nextunit{
   text-align: right;
   display: block;
+}
+.myprogress{
+  width: 750px;
+  margin:auto;
+  padding-right: 250px;
+  margin-top: 120px;
+}
+.learn0,.learn1,.learn2,.learn3{
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  margin: 5px;
+  display: inline-block;
+  background: #666;
+}
+.learn1,.learn2,.learn3{
+  background-image: url('../imgs/texture/Texture_for_coins.jpg') 
+}
+.learn1{
+  background-position: 0px 0px;
+}
+.learn2{
+  background-position: 0px -140px;
+}
+.learn3{
+  background-position: 0px 20px; 
 }

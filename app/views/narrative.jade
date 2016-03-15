@@ -160,8 +160,8 @@ html
             #previous.btn Previous
             #next.btn.btn_right Next
         .myprogress
-          span.toLearn  Items to learn : <span>10</span>
-          span.learned  Items learned : <span>1</span>
+          -each item in lists
+            .learn0 
           
   script(type="application/javascript", src="scripts/jquery-2.1.4.min.js")
   //- script(type="application/javascript", src="scripts/plugin/soundmanager2-jsmin.js")
