@@ -10,6 +10,7 @@
 .content{
   width: 1000px;
   margin: auto;
+  position: relative;
 }
 .btn{
   width: 320px;
@@ -28,3 +29,53 @@
   border-color: #94c500;
   color: #fff;
 }
+.part{
+  display: none;
+  position: absolute;
+  width: 100%;
+}
+.part:first-child{
+  display: block;
+}
+.language {
+  line-height: 48px;
+  font-size: 18px;
+}
+.select{    
+  font-size: 14px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 10px;
+  height: 30px;
+  width: 180px;
+}
+.selected{
+  padding: 4px 30px;
+  color: white;
+  text-align: center;
+  line-height: 18px;
+  border-radius: 20px;
+  border: 2px solid white;
+  height: 100%;
+  width: 100%;
+}
+.options{
+  position: relative;
+  overflow: hidden;
+  display: none;
+}
+.option{
+  background: #363636;
+  text-align: center;
+  margin: 0 5px;
+  border-bottom: 2px solid white;
+  line-height: 30px;
+  cursor: context-menu;
+}
+
+
+
+
+
+
+

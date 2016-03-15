@@ -1,8 +1,18 @@
+body{
+  background: rgb(4,4,4);
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+ul,li{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 .container{
   background: rgb(4,4,4);
   width: 100%;
   height: auto;
-  min-height: 468px;
   padding: 100px 0px;
   color: white;
   position: relative;
@@ -102,9 +112,10 @@ input[type=text]{
   margin-top: 120px;
 }
 .next{
-  color: yellow;
-  font-size: 30px;
-  border: 1px solid yellow;
+  color: white;
+  font-size: 20px;
+  line-height: 40px;
+  border: 1px solid white;
   width: 150px;
   text-align: center;
   float: right;
@@ -114,7 +125,7 @@ input[type=text]{
   margin-top: 70px;
 }
 .next:hover{
-  background: rgb(50,50,0);
+  background: rgb(90, 90, 74);
 }
 .finish{
   width: 1000px;
