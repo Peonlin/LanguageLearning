@@ -1,7 +1,6 @@
 var path = require('path');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-mongoose.Promise = require('bluebird');
 //mongoose.connect("mongodb://localhost/learningUser");
 var db = mongoose.connection;
 db.on('error', function(error) {
