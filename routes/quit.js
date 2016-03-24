@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 exports.quit = function(req, res) {
 	if (req.cookies.account != null) {
-		req.cookies.account = null;
+		res.clearCookie("account");
 		res.redirect('/');
 	}
 };
