@@ -19,6 +19,17 @@ exports.open = function(req, res, next) {
 		case "agbb":
 			data = [['Set',	'Comment', 'Question', 'A', 'A_font', 'Language', 'Speaker', 'B', 'B alternative I', 'B alternative II',
 			 	'B alternative III', 'B_font',	'Language',	'Speaker']];
+			var aggbModel = mongoose.model('a_given_b_blank');
+			aggbModel.find().sort({'_id': 1}).exec(function(err, list) {
+				for (var i = 0; i < list.length; i++) {
+					var tmp = [];
+					tmp.push(list[i]._set, list[i].comment, list[i].question, list[i].top, list[i].a_font, list[i].a_language, list[i].a_speaker,
+						list[i].bottom, list[i].bottom_1, list[i].bottom_2, list[i].bottom_3, list[i].b_font, list[i].b_language, list[i].b_speaker);
+					data.push(tmp);
+				}
+				var buffer = xlsx.build([{name: "mySheetName", data: data}]);
+				fs.writeFileSync('C:/Users/Sauce/Desktop/A_GIVEN_B_BLANK.xlsx', buffer, 'binary');
+			});
 			break;
 		case "agbc":
 			data = [['Set',	'Comment', 'Question', 'A', 'A_font', 'Language', 'Speaker', 'B', 'B alternative I', 'B alternative II', 'B_font',
@@ -44,20 +55,38 @@ exports.open = function(req, res, next) {
 			data = [['Set', 'Comment', 'Question', 'GIVEN', '1_font', 'Language', 'Speaker', 'DESIRED', 'PIECE-01', 'PIECE-02',	'PIECE-03',
 				'PIECE-04',	'PIECE-05',	'PIECE-06',	'PIECE-07', 'PIECE-08', '2_font', 'Language', 'Speaker']];
 			break;
+		case "user":
+			data = [['username', 'Email', 'Phone', 'Current_tour', 'Current_lesson']];
+			var userModel = mongoose.model('Users');
+			userModel.find().sort({'_id': 1}).exec(function(err, list) {
+				for (var i = 0; i < list.length; i++) {
+					var tmp = [];
+					tmp.push(list[i].username, list[i].email, list[i].phone, list[i].Current_lesson, list[i].Current_tour);
+					data.push(tmp);
+				}
+				var buffer = xlsx.build([{name: "mySheetName", data: data}]);
+				fs.writeFileSync('C:/Users/Sauce/Desktop/Users.xlsx', buffer, 'binary');
+			});
+			break;
 	}
-	var buffer = xlsx.build([{name: "mySheetName", data: data}]);
-	fs.writeFileSync('C:/Users/Sauce/Desktop/' + type + '.xlsx', buffer, 'binary');
+	
 	res.send('export successfully!');
 };
 
 exports.upload = function(req, res) {
+	if(!/multipart\/form-data/i.test(req.headers['content-type'])){
+		return res.end('wrong');
+	}
 	var fstream;
+	console.log(1);
     req.pipe(req.busboy);
     req.busboy.on('file', function (fieldname, file, filename) {
         console.log("Uploading: " + filename); 
         fstream = fs.createWriteStream('./app/excel/' + filename);
         file.pipe(fstream);
     });
-	
-	res.send('上传成功！');	 
+	var aggbModel = mongoose.model('a_given_b_blank');
+	aggbModel.remove({}, function(err) {
+		res.redirect('/init_aggb');
+	});
 } 

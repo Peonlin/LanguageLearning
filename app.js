@@ -8,6 +8,7 @@ var jade = require("jade");
 var server = require("http").createServer(app);
 var routes = require('./routes/routes');
 var session = require('express-session');
+var busboy = require('connect-busboy');
 //var users = require('./routes/users');
 var app = express();
 //app.set('port', process.env.PORT || 3000);
@@ -21,6 +22,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(busboy());
 app.use(session({
   secret: 'recommand 128 bytes random string', // 建议使用 128 个字符的随机字符串
   cookie: { maxAge: 60 * 1000 }
