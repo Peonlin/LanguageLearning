@@ -17,6 +17,8 @@ var excel = require('./excel');
 var letter = require('./letter_number_match');
 var pmap = require('./progressmap');
 var letsl = require('./letslearn');
+var xlsx = require('node-xlsx');
+var path = require('path');
 
 router.get('/', function(req, res) {
     res.render('index.jade', { title: 'home_page'});
@@ -109,4 +111,34 @@ router.post('/download', excel.open);
 router.post('/upload', excel.upload);
 router.get('/progressmap', pmap.open);
 router.get('/letslearn',letsl.open);
+
+router.get('/begin_lesson', function(req, res) {
+	console.log(req.query.unit + "\n" + req.query.tour);
+	var unit = req.query.unit, tour = req.query.tour;
+
+	var name = path.dirname(__dirname);
+	var obj = xlsx.parse(name + "/app/excel/SCRIPT.xlsx");
+	var data = obj[0].data;
+	var i = 1;
+	for (i = 1; i < data.length; i++) {
+		if (data[i][0] != undefined) {
+			if (data[i][0] != tour)
+				break;
+			else {
+				while (i < data.length && data[i][1] != unit) {
+					i++;
+				}
+				break;
+			}
+		}
+	}
+	if (i < data.length) {
+		res.redirect('/' + data[i][2] + '?set=' + data[i][3]);
+	}
+});
+
+router.post('/next_type', function(req, res) {
+	
+});
+
 module.exports = router;

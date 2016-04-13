@@ -87,15 +87,17 @@ exports.open = function(req, res) {
 		for (var i = 0; i < list.length;) {
 			var set_tmp = [];
 			while (i < list.length && list[i]._set == set) {
+				list.
 				set_tmp.push(list[i]);
 				i++;
 			}
 			set++;
 			result.push(set_tmp);
 		}
+		var set = req.query.set - 1;
 		//需要获得应该返回的数值
 		if (req.cookies.account != null)
-			res.render("a_given_b_cloze.jade", {title: "A_GIVEN_B_CLOZE", lists: list});
+			res.render("a_given_b_cloze.jade", {title: "A_GIVEN_B_CLOZE", lists: result[set]});
 		else
 			res.redirect('/login');
 		//res.json(list);
