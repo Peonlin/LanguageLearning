@@ -12,7 +12,9 @@ var schema = new Schema({
     username: String,
     password: String,
     email: String,
-    phone: String
+    phone: String,
+    current_tour: String,
+    current_lesson: String
 });
 
 var UsersModel = mongoose.model('Users', schema);

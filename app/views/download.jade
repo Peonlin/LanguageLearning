@@ -16,9 +16,10 @@ block content
         option(value='l_n_m') letter_number_match
         option(value='multichoice') multiplechoice
         option(value='muc') matchupclick
+        option(value='user') user
       input(type='submit' value='确定')
-    form(action = 'upload' enctype="multipart/form-data" method='post')
-      input(type='file' value='上传文件')
+    form(action = 'upload' enctype="multipart/form-data" method='post' name = 'uploader')
+      input(type='file' value='上传文件' name = "file" required)
       input(type='submit' value='确认')
   script(type='text/javascript'). 
     window.onload = function(){
