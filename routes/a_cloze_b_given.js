@@ -83,10 +83,22 @@ exports.del = function(req, res) {
 
 exports.open = function(req, res) {
 	acbgModel.find().sort({'_id': 1}).exec(function(err, list) {
+		var set = 1;
+		var result = [];
+		for (var i = 0; i < list.length;) {
+			var set_tmp = [];
+			while (i < list.length && list[i]._set == set) {
+				set_tmp.push(list[i]);
+				i++;
+			}
+			set++;
+			result.push(set_tmp);
+		}
+		//需要获得应该返回的数值
 		if (req.cookies.account != null)
 			res.render("a_cloze_b_given.jade", {title: "A_CLOZE_B_GIVEN", lists: list});
 		else
 			res.redirect('/login');
-		//res.json(list);
+		//res.json(result[1]);
 	});
 };

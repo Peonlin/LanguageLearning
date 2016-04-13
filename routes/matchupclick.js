@@ -93,6 +93,18 @@ exports.del = function(req, res) {
 
 exports.open = function(req, res) {
 	mucModel.find().sort({'_id': 1}).exec(function(err, list) {
+		var set = 1;
+		var result = [];
+		for (var i = 0; i < list.length;) {
+			var set_tmp = [];
+			while (i < list.length && list[i]._set == set) {
+				set_tmp.push(list[i]);
+				i++;
+			}
+			set++;
+			result.push(set_tmp);
+		}
+		//需要获得应该返回的数值
 		if (req.cookies.account != null)
 			res.render("matchupclick.jade", {title: "MATCHUPCLICK", lists: list});
 		else

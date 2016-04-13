@@ -85,13 +85,16 @@ exports.open = function(req, res) {
 		var result = [], que = [];
 		var a = 0, flag = 0, temp = 1, i = 0;
 		while (a < list.length) {
+			//一次返回一个set
 			if (list[a]._set == temp) {
+				//将所有set_id相同的题目数组都存在一个数组之中
 				que[i] = list[a];
 				a++;
 				i++;
 			}
 			else {
 				i = 0;
+				//把刚刚得到的题目数组存入结果数组，并重置临时数组，开始下一次循环
 				result.push({
 					"set_id": temp,
 					"question": que
@@ -104,11 +107,10 @@ exports.open = function(req, res) {
 			"set_id": temp,
 			"question": que
 		});
-		// res.json(result);
+
 		if (req.cookies.account != null)
 			res.render("letter_number_match.jade", {title: "LETTER_NUMBER_MATCH", lists: result});
 		else
-			// res.render("letter_number_match.jade", {title: "LETTER_NUMBER_MATCH", lists: result});
 			res.redirect('/login');
 	});
 };

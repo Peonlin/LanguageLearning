@@ -3,8 +3,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 exports.quit = function(req, res) {
-	if (req.session.user) {
-		req.session.user = undefined;
+	if (req.cookies.account != null) {
+		res.clearCookie("account");
 		res.redirect('/');
 	}
 };
