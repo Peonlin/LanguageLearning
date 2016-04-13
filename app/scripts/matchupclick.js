@@ -10,6 +10,9 @@ function initial(){
   $('.part:first').show();
   addActive($('.part:first'));
   addFocus($('.part:first').find('input').eq(0));
+  for(var i=0;i<$('.part').length;i++){
+    randomOrder($('.part').eq(i).find('.scrambled .piece'));
+  }
   $('.plain').click(function(){
     if($(this).parent().find('.horn').hasClass('press')){
       $(this).parent().find('.horn').removeClass('press');
@@ -24,7 +27,9 @@ function initial(){
     addFocus($(this));
   });
   $('.scrambled .piece').click(function(){
-    $('.active input.focus').val($(this).text());
+    var inputText = $('.active input.focus').val()
+    var text = $(this).text();
+    $('.active input.focus').val( inputText + ' ' +$(this).text());
   });
 }
 
@@ -85,7 +90,20 @@ function addFocus(ob){
   $('.part input').removeClass('focus');
   ob.addClass('focus');
 };
-
+// 打乱顺序
+function randomOrder(ob){
+  if(ob.length == 0)
+    return;
+  var ramdom = shuffle(ob.clone(true));
+  for(var i=0;i<ob.length;i++){
+    ob.eq(i).html(ramdom.eq(i).html());
+  }
+};
+// 乱序函数
+function shuffle(o){ //v1.0
+  for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+  return o;
+};
 // button的背景纹理和coins的纹理
 function texture(btns,coins){
   var image = 'url(../imgs/texture/Metal_texture_0' + myramdom(1,6) +'.jpg)'
