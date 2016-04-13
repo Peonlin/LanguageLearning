@@ -38,8 +38,8 @@ html
           .desc <span>Congratulations ! </span> You have finished this unit.<br>
             a.nextunit(href='nextunit') Continue to next unit?
         .myprogress
-          .toLearn  Items to learn : <span>1</span>
-          .learned  Items learned : <span>#{lists.length}</span>
+          -each item in lists
+            .learn0
 
 
   script(type="application/javascript", src="scripts/jquery-2.1.4.min.js")

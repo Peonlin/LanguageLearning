@@ -1,6 +1,6 @@
 $(document).ready(function() {
   // 初始化to learn的数目
-  $('.toLearn span').eq(0).html($('.part').length);
+  texture($('.btn'),$('.myprogress'));
   $('.part').eq(0).addClass('active');
   // 给信息添加乱序
   for(var i=0;i<$('table').length;i++){
@@ -69,7 +69,7 @@ $(document).ready(function() {
       else{
         current.removeClass('active');
         current.next().addClass('active');
-        $('.learned span').eq(0).text(current.index()+2);
+        $('.myprogress .learn1:last').next().addClass('learn1');
       }
     }
   });
@@ -124,4 +124,19 @@ $(document).ready(function() {
     for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
     return o;
   };
+
+  // button的背景纹理和coins的纹理
+  function texture(btns,coins){
+    var image = 'url(../imgs/texture/Metal_texture_0' + myramdom(1,6) +'.jpg)'
+    btns.css({
+      'background-image':image,
+      'color':'black',
+      'font-weight':'bold'
+    });
+    coins.find('.learn0').eq(0).addClass('learn1');
+  }
+  function myramdom(min,max){
+    return min + Math.round(Math.random() * (max - min));
+  }
+
 });
