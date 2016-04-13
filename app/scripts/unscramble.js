@@ -8,7 +8,15 @@ $(function(){
 function initial(){
   $('.part ').css('display','none');
   $('.part:first').css('display','block');
+  for(var i=0;i<$('.part').length;i++){
+    randomOrder($('.part').eq(i).find('.scrambled .piece'));
+  }
   texture($('#next'),$('.myprogress'));
+  $('.scrambled .piece').click(function(){
+    var inputText = $('.part:visible input').val()
+    var text = $(this).text();
+    $('.part:visible input').val( inputText + ' ' +$(this).text());
+  });
 }
 
 // 播放MP3文件
@@ -86,7 +94,20 @@ function nextClick(){
     }
   });
 }
-
+// 打乱顺序
+function randomOrder(ob){
+  if(ob.length == 0)
+    return;
+  var ramdom = shuffle(ob.clone(true));
+  for(var i=0;i<ob.length;i++){
+    ob.eq(i).html(ramdom.eq(i).html());
+  }
+};
+// 乱序函数
+function shuffle(o){ //v1.0
+  for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+  return o;
+};
 // button的背景纹理和coins的纹理
 function texture(btns,coins){
   var image = 'url(../imgs/texture/Metal_texture_0' + myramdom(1,6) +'.jpg)'
@@ -100,3 +121,4 @@ function texture(btns,coins){
 function myramdom(min,max){
   return min + Math.round(Math.random() * (max - min));
 }
+
