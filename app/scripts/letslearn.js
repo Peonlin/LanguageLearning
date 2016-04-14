@@ -2,26 +2,25 @@ $(document).ready(function() {
 	$('body').click(function(){
 		$('.options:visible').slideUp('200');
 	});
-	$('.select').click(function(){
+	$('.myselect').click(function(){
 		$('.options:visible').slideUp('200');
 		$(this).find('.options').slideDown('200');
 		return false;
 	});
 	$('.option').click(function(){
-		$(this).parents('.select').find('.selected').text($(this).text());
+		$(this).parents('.myselect').find('.selected').text($(this).text());
 		$('.options:visible').slideUp('200');
 		return false;
 	});
 	$('.btn.start').click(function(){
 		$('.part').eq(0).fadeOut(1500);
 		$('.part').eq(1).fadeIn(1500);
-		console.log('adf');
 	});
 	$('#learn').click(function(){
 		var flag = true;
-		for(var i=0;i<$('.select').length;i++){
-			if($('.select').eq(i).find('.selected').text()==''){
-				$('.select').eq(i).find('.options').slideDown('200');
+		for(var i=0;i<$('.myselect').length;i++){
+			if($('.myselect').eq(i).find('.selected').text()==''){
+				$('.myselect').eq(i).find('.options').slideDown('200');
 				flag = false;
 				return false;
 			}

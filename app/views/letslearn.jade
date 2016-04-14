@@ -12,22 +12,29 @@ block content
       .part
         .language 
           span I can speak
-          select#myselect1.myselect
-            option(value='0') English
-            option(value='1') Chinese
-            option(value='2') Frenche
-            option(value='3') Japanese
+          #myselect1.myselect
+            .selected
+            .options
+              .option(value='0') English
+              .option(value='1') Chinese
+              .option(value='2') Frenche
+              .option(value='3') Japanese
           span , and I want to learn
-          select#myselect2.myselect
-            option(value='1') Chinese
-            option(value='0') English
-            option(value='2') Frenche
-            option(value='3') Japanese
+          #myselect2.myselect
+            .selected
+            .options
+              .option(value='1') Chinese
+              .option(value='0') English
+              .option(value='2') French
+              .option(value='3') Japanese
           br
           span I am
-          select#myselect3.myselect
-            option(value='0') male
-            option(value='1') female
+          #myselect3.myselect
+            .selected
+            .options
+              .option(value='0') male
+              .option(value='1') female
+      #learn.btn 开始学习
 
 
   script(type="text/javascript", src="scripts/jquery-2.1.4.min.js")
