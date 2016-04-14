@@ -11,30 +11,28 @@ html
         - if(!lists)
           .alert There's not questions designed yet!
         - else
-          - each item in lists
-            .part
-              .num(table_id= '#{item.set_id}') #{item.set_id}
-              table
-                tbody
-                  - each temp in item.question
-                    tr(_id='#{temp.question}')
-                      td #{temp.question}
-                      td(type='A')
-                        .info(_id='#{temp.question}') #{temp.part_a}
-                      td.drag(type='B')
-                        .info(_id='#{temp.question}') #{temp.part_b}
-                      - if(temp.part_c)
-                        td.drag(type='c')
-                          .info(_id='#{temp.question}') #{temp.part_c}
-              .inputTip.fadeout
-                .popoverContent <span>WARNING: </span>You haven't typed your answer yet !
+          .part
+            .num(table_id= '#{lists.set_id}') #{lists.set_id}
+            table
+              tbody
+                - each temp in lists.question
+                  tr(_id='#{temp.question}')
+                    td #{temp.question}
+                    td(type='A')
+                      .info(_id='#{temp.question}') #{temp.part_a}
+                    td.drag(type='B')
+                      .info(_id='#{temp.question}') #{temp.part_b}
+                    - if(temp.part_c)
+                      td.drag(type='c')
+                        .info(_id='#{temp.question}') #{temp.part_c}
+            .inputTip.fadeout
+              .popoverContent <span>WARNING: </span>You haven't typed your answer yet !
         .tip Tips: Click two items to excahnge their orders!
         .btns
           #answer.btn Answer
           #next.btn.btn_right Next
         .myprogress
-          -each item in lists
-            .learn0
+          .learn0
 
   #data(style='display:none') #{JSON.stringify(lists)}
 

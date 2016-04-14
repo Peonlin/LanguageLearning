@@ -15,11 +15,8 @@ $(document).ready(function() {
         password: md5('UserName:' + $('input[name=username]').val() + ';Password:' + $('input[name=password]').val())
       },
     })
-    .done(function(result) {
-      if(result.message == 'success')
-        window.location.href = '/';
-      else
-        showMessage(result.err);
+    .done(function(url) {
+      window.location.href='/progressmap';
     })
     .fail(function(result) {
       showMessage(JSON.stringify(result));
