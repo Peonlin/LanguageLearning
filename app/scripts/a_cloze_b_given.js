@@ -73,7 +73,7 @@ function showNextQestion(){
   var next = $('.active').next();
   ob.hide();
   if($('.part:last').hasClass('active')){
-    $('.finish').show();
+    $('#next').addClass('last');
   }
   else{
     next.show();
