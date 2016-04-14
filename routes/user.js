@@ -8,8 +8,9 @@ var db = mongoose.connection;
 db.on('error', function(error) {
     console.log(error);
 });
+//username unique
 var schema = new Schema({
-    username: String,
+    username: {type:String, unique: true},
     password: String,
     email: String,
     phone: String,
@@ -37,6 +38,7 @@ exports.create = function (req, res) {
 };
 
 exports.login = function (req, res) {
+    console.log(req.body);
     UsersModel.findOne({username:req.body.username}, function (err, user) {
         if (err)
             return res.json({err:err});

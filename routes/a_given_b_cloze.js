@@ -1,7 +1,6 @@
 var path = require('path');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
 //mongoose.connect("mongodb://localhost/learningUser");
 var db = mongoose.connection;
 db.on('error', function(error) {
@@ -42,7 +41,7 @@ exports.init = function(req, res) {
 		}
 		var _set_tmp = set_tmp;
 		var comment_tmp = comment_tmp;
-		
+
 		var list = new agbcModel({
 			_id: i,
 		    _set: _set_tmp,
@@ -57,27 +56,16 @@ exports.init = function(req, res) {
 		    a_font: data[i][4],
 		    b_speaker: data[i][12],
 		    b_language: data[i][11],
-		    b_font: data[i][10] 
+		    b_font: data[i][10]
 		});
 		list.save();
 		i++;
 	}
 	res.redirect("/");
-	
+
 };
 
 exports.del = function(req, res) {
-	i = 1;
-	while (i < data.length) {
-		var cond = {a_language: data[i][5]};
-		agbcModel.remove(cond, function(err, res) {
-			if (err) {
-				console.log(err);
-			}
-		});
-		i++;
-	}
-	res.redirect("/");
 };
 
 exports.open = function(req, res) {
@@ -87,17 +75,29 @@ exports.open = function(req, res) {
 		for (var i = 0; i < list.length;) {
 			var set_tmp = [];
 			while (i < list.length && list[i]._set == set) {
-				list.
+				list[i].question += 1;
 				set_tmp.push(list[i]);
 				i++;
 			}
 			set++;
 			result.push(set_tmp);
 		}
+		var unit = req.query.unit;
+		var tour = req.query.tour;
 		var set = req.query.set - 1;
 		//需要获得应该返回的数值
-		if (req.cookies.account != null)
+		if (req.cookies.account != null) {
+			var userModel = mongoose.model('Users');
+			userModel.update({username: req.cookies.account.username}, {
+				$set: {current_unit: unit, current_tour: tour, current_type: 'a_given_b_cloze'}
+			}, function(err) {
+				if (err) {
+					console.log(err);
+					return
+				}
+			});
 			res.render("a_given_b_cloze.jade", {title: "A_GIVEN_B_CLOZE", lists: result[set]});
+		}
 		else
 			res.redirect('/login');
 		//res.json(list);

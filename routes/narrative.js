@@ -169,10 +169,10 @@ exports.open = function(req, res) {
 			set_arr = [];
 			cur_set++;
 		}
-		// if (req.cookies.account != null)
-		// 	res.render("narrative.jade", {title: "narrative", lists: list});
-		// else
-		// 	res.render("narrative.jade", {title: "narrative", lists: list});
-		res.json(res_arr);
+		 if (req.cookies.account != null)
+		 	res.render("narrative.jade", {title: "narrative", lists: list});
+		 else
+		 	res.render("narrative.jade", {title: "narrative", lists: list});
+		//res.json(res_arr);
 	});
 };
