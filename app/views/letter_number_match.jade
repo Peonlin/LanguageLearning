@@ -17,15 +17,15 @@ html
               table
                 tbody
                   - each temp in item.question
-                    tr(_id='#{temp._id}')
-                      td #{temp._id}
+                    tr(_id='#{temp.question}')
+                      td #{temp.question}
                       td(type='A')
-                        .info(_id='#{temp._id}') #{temp.part_a}
+                        .info(_id='#{temp.question}') #{temp.part_a}
                       td.drag(type='B')
-                        .info(_id='#{temp._id}') #{temp.part_b}
+                        .info(_id='#{temp.question}') #{temp.part_b}
                       - if(temp.part_c)
                         td.drag(type='c')
-                          .info(_id='#{temp._id}') #{temp.part_c}
+                          .info(_id='#{temp.question}') #{temp.part_c}
               .inputTip.fadeout
                 .popoverContent <span>WARNING: </span>You haven't typed your answer yet !
         .tip Tips: Click two items to excahnge their orders!

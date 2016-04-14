@@ -35,6 +35,9 @@ function nextClick(){
   $('#next').click(function(){
     if(!inputIsEdited())
       showInputTip();
+    else if($(this).hasClass('last')){
+      sendAnswerAjax();
+    }
     else{
       if($(this).text() =='Answer'){
         showAnswer();
@@ -53,6 +56,35 @@ function inputIsEdited(){
       return false;
   }
   return true;
+}
+function sendAnswerAjax(){
+  $.ajax({
+    url: 'nextType',
+    type: 'post',
+    data: getAnswers(),
+  })
+  .fail(function() {
+    alert('刷新失败，请重试！');
+  })
+}
+function getAnswers(){
+  var data = {};
+  // 当前所学习的语言、tour、unit、题目类型
+  // 比如http://localhost:3000/A_GIVEN_B_CLOZE%EF%BC%9Flanguage=en&tour=1&unit=2
+  data.type = window.location.pathname.substr(1);
+  var search = window.location.search.substr(1).split(/[\=\&]/g);
+  data.language = search[1];
+  data.tour = search[3];
+  data.unit = search[5];
+  // 每道题的答案信息，题目id、答案
+  data.answers = [];
+  for(var i=0;i<$('.part').length;i++){
+    var temp = {};
+    temp._id = $('.part').eq(i).find('.num').attr('table_id');
+    temp.answer = $('.part').eq(i).find('input').val();
+    data.answers.push(temp);
+  }
+  return JSON.stringify(data);
 }
 function showAnswer(){
   var str = 'Answer: &nbsp&nbsp' + $('.active .answer').eq(0).text();
@@ -73,7 +105,7 @@ function showNextQestion(){
   var next = $('.active').next();
   ob.hide();
   if($('.part:last').hasClass('active')){
-    $('.finish').show();
+    $('#next').addClass('last');
   }
   else{
     next.show();
