@@ -45,6 +45,9 @@ function sendAnswerAjax(){
     type: 'post',
     data: getAnswers(),
   })
+  .done(function(url){
+    window.location.href = url;
+  })
   .fail(function() {
     alert('刷新失败，请重试！');
   })
