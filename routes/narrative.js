@@ -169,10 +169,23 @@ exports.open = function(req, res) {
 			set_arr = [];
 			cur_set++;
 		}
-		 if (req.cookies.account != null)
-		 	res.render("narrative.jade", {title: "narrative", lists: list});
+		var unit = req.query.unit;
+		var tour = req.query.tour;
+		var set = req.query.set - 1;
+		if (req.cookies.account != null) {
+			var userModel = mongoose.model('Users');
+			userModel.update({username: req.cookies.account.username}, {
+				$set: {current_unit: unit, current_tour: tour, current_type: 'letter_number_match'}
+			}, function(err) {
+				if (err) {
+					console.log(err);
+					return
+				}
+			});
+		 	res.render("narrative.jade", {title: "narrative", lists: res_arr[set]});
+		 }
 		 else
-		 	res.render("narrative.jade", {title: "narrative", lists: list});
+		 	res.redirect('/login');
 		//res.json(res_arr);
 	});
 };

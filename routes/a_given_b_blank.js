@@ -114,16 +114,16 @@ exports.open = function(req, res) {
 		var set = req.query.set - 1;
 		//需要获得应该返回的数值
 		if (req.cookies.account != null) {
-			// var userModel = mongoose.model('Users');
-			// userModel.update({username: req.cookies.account.username}, {
-			// 	$set: {current_unit: unit, current_tour: tour, current_type: 'a_given_b_blank'}
-			// }, function(err) {
-			// 	if (err) {
-			// 		console.log(err);
-			// 		return
-			// 	}
-			// });
-			res.render("a_given_b_blank.jade", {title: "A_GIVEN_B_BLANK", lists: list});
+			var userModel = mongoose.model('Users');
+			userModel.update({username: req.cookies.account.username}, {
+				$set: {current_unit: unit, current_tour: tour, current_type: 'a_given_b_blank'}
+			}, function(err) {
+				if (err) {
+					console.log(err);
+					return
+				}
+			});
+			res.render("a_given_b_blank.jade", {title: "A_GIVEN_B_BLANK", lists: result[set]});
 		}
 		else
 			res.redirect('/login');

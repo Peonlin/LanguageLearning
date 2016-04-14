@@ -104,11 +104,23 @@ exports.open = function(req, res) {
 			set++;
 			result.push(set_tmp);
 		}
-		//需要获得应该返回的数值
-		if (req.cookies.account != null)
-			res.render("matchupclick.jade", {title: "MATCHUPCLICK", lists: list});
+		var unit = req.query.unit;
+		var tour = req.query.tour;
+		var set = req.query.set - 1;
+		if (req.cookies.account != null) {
+			var userModel = mongoose.model('Users');
+			userModel.update({username: req.cookies.account.username}, {
+				$set: {current_unit: unit, current_tour: tour, current_type: 'letter_number_match'}
+			}, function(err) {
+				if (err) {
+					console.log(err);
+					return
+				}
+			});
+			res.render("matchupclick.jade", {title: "MATCHUPCLICK", lists: result[set]});
+		}
 		else
-			res.redirect('/login');
+			res.redirect('/login?from=matchupclick');
 		//res.json(list);
 	});
 };
