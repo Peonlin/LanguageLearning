@@ -100,6 +100,7 @@ exports.open = function(req, res) {
 		for (var i = 0; i < list.length;) {
 			var set_tmp = [];
 			while (i < list.length && list[i]._set == set) {
+				list[i].question = parseInt(list[i].question) + 1;
 				set_tmp.push(list[i]);
 				i++;
 			}
