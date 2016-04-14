@@ -88,6 +88,7 @@ exports.open = function(req, res) {
 			//一次返回一个set
 			if (list[a]._set == temp) {
 				//将所有set_id相同的题目数组都存在一个数组之中
+				list[a].question += 1;
 				que[i] = list[a];
 				a++;
 				i++;
@@ -108,9 +109,22 @@ exports.open = function(req, res) {
 			"question": que
 		});
 
-		if (req.cookies.account != null)
-			res.render("letter_number_match.jade", {title: "LETTER_NUMBER_MATCH", lists: result});
+		var unit = req.query.unit;
+		var tour = req.query.tour;
+		var set = req.query.set - 1;
+		if (req.cookies.account != null) {
+			var userModel = mongoose.model('Users');
+			userModel.update({username: req.cookies.account.username}, {
+				$set: {current_unit: unit, current_tour: tour, current_type: 'letter_number_match'}
+			}, function(err) {
+				if (err) {
+					console.log(err);
+					return
+				}
+			});
+			res.render("letter_number_match.jade", {title: "LETTER_NUMBER_MATCH", lists: result[set]});
+		}
 		else
-			res.redirect('/login');
+			res.redirect('/login?from=letter_number_match');
 	});
 };

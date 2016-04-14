@@ -34,7 +34,7 @@ exports.getNext = function(req, res) {
 		}
 	}
 	if (i < data.length) {
-		var res_url = '/' + data[i][2] + '?tour=' + tour + '&unit=' + unit + '&set=' + data[i][3];
+		var res_url = '/' + data[i][2] + '?language=en&tour=' + tour + '&unit=' + unit + '&set=' + data[i][3];
 		res.send(res_url);
 	}
 };
