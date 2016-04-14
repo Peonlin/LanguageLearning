@@ -33,11 +33,11 @@ function nextClick(){
   var length = $('.part').length;
   var index = 0;
   $('#next').click(function(){
-    if(!inputIsEdited())
+    if($(this).hasClass('last')){
+        sendAnswerAjax();
+      }
+    else if(!inputIsEdited())
       showInputTip();
-    else if($(this).hasClass('last')){
-      sendAnswerAjax();
-    }
     else{
       if($(this).text() =='Answer'){
         showAnswer();
@@ -93,6 +93,9 @@ function showAnswer(){
   }
   $('.active .answer:first').html(str);
   $('.active .answer:first').show();
+  if($('.part:last').hasClass('active')){
+    $('#next').addClass('last');
+  }
 };
 function showInputTip(){
   $('.active').find('.inputTip').show();
@@ -104,15 +107,11 @@ function showNextQestion(){
   var ob = $('.active');
   var next = $('.active').next();
   ob.hide();
-  if($('.part:last').hasClass('active')){
-    $('#next').addClass('last');
-  }
-  else{
-    next.show();
-    addActive(next);
-    $('.myprogress .learn1:last').next().addClass('learn1');
-    addFocus(next.find('input').eq(0));
-  }
+  next.show();
+  addActive(next);
+  $('.myprogress .learn1:last').next().addClass('learn1');
+  addFocus(next.find('input').eq(0));
+  
 };
 
 function showInputs(){
