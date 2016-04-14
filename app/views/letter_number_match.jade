@@ -13,7 +13,7 @@ html
         - else
           - each item in lists
             .part
-              .num #{item.set_id}
+              .num(table_id= '#{item.set_id}') #{item.set_id}
               table
                 tbody
                   - each temp in item.question
@@ -35,9 +35,6 @@ html
         .myprogress
           -each item in lists
             .learn0
-      .finish 
-        .desc <span>Congratulations ! </span> You have finished this unit.<br>
-          a.nextunit(href='nextunit') Continue to next unit?
 
   #data(style='display:none') #{JSON.stringify(lists)}
 

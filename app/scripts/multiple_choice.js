@@ -34,7 +34,9 @@ function nextClick(){
   var length = $('.part').length;
   var index = 0;
   $('#next').click(function(){
-    if(!inputIsEdited())
+    if($(this).hasClass('last'))
+      sendAnswerAjax();
+    else if(!inputIsEdited())
       showInputTip();
     else{
       if($(this).text() =='Answer'){
@@ -48,6 +50,38 @@ function nextClick(){
     }
   });
 };
+function sendAnswerAjax(){
+  $.ajax({
+    url: 'nextType',
+    type: 'post',
+    data: getAnswers(),
+  })
+  .done(function(url){
+    window.location.href = url;
+  })
+  .fail(function() {
+    alert('刷新失败，请重试！');
+  })
+}
+function getAnswers(){
+  var data = {};
+  // 当前所学习的语言、tour、unit、题目类型
+  // 比如http://localhost:3000/A_GIVEN_B_CLOZE%EF%BC%9Flanguage=en&tour=1&unit=2
+  data.type = window.location.pathname.substr(1);
+  var search = window.location.search.substr(1).split(/[\=\&]/g);
+  data.language = search[1];
+  data.tour = search[3];
+  data.unit = search[5];
+  // 每道题的答案信息，题目id、答案
+  data.answers = [];
+  for(var i=0;i<$('.part').length;i++){
+    var temp = {};
+    temp._id = $('.part').eq(i).find('.num').attr('table_id');
+    temp.answer = $('.part').eq(i).find('input').val();
+    data.answers.push(temp);
+  }
+  return data;
+}
 function inputIsEdited(){
   for(var i=0;i<$('.active input').length;i++){
     if($('.active input').eq(i).val().length == 0)
@@ -62,6 +96,8 @@ function showAnswer(){
   }
   $('.active .answer:first').html(str);
   $('.active .answer:first').show();
+  if($('.part:last').hasClass('active'))
+    $('#next').addClass('last');
 };
 function showInputTip(){
   $('.active').find('.inputTip').show();
@@ -73,15 +109,10 @@ function showNextQestion(){
   var ob = $('.active');
   var next = $('.active').next();
   ob.hide();
-  if($('.part:last').hasClass('active')){
-    $('.finish').show();
-  }
-  else{
-    next.show();
-    addActive(next);
-    addFocus(next.find('input').eq(0));
-    $('.myprogress .learn1:last').next().addClass('learn1');
-  }
+  next.show();
+  addActive(next);
+  addFocus(next.find('input').eq(0));
+  $('.myprogress .learn1:last').next().addClass('learn1');
 };
 
 function showInputs(){

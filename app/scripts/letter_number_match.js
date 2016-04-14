@@ -63,8 +63,7 @@ $(document).ready(function() {
       var current = $('.part.active');
       // 如果习题已做完
       if(current.index() == $('.part').length-1){
-        $('.content1').hide();
-        $('.finish').show();
+        sendAnswerAjax();
       }
       else{
         current.removeClass('active');
@@ -124,6 +123,39 @@ $(document).ready(function() {
     for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
     return o;
   };
+  function sendAnswerAjax(){
+    $.ajax({
+      url: 'nextType',
+      type: 'post',
+      data: getAnswers(),
+    })
+    .done(function(url){
+      window.location.href = url;
+    })
+    .fail(function() {
+      alert('刷新失败，请重试！');
+    })
+  }
+  function getAnswers(){
+    var data = {};
+    // 当前所学习的语言、tour、unit、题目类型
+    // 比如http://localhost:3000/A_GIVEN_B_CLOZE%EF%BC%9Flanguage=en&tour=1&unit=2
+    data.type = window.location.pathname.substr(1);
+    var search = window.location.search.substr(1).split(/[\=\&]/g);
+    data.language = search[1];
+    data.tour = search[3];
+    data.unit = search[5];
+    // 每道题的答案信息，题目id、答案
+    data.answers = [];
+    // 这个题型的答案暂时不予返回处理
+    // for(var i=0;i<$('.part').length;i++){
+    //   var temp = {};
+    //   temp._id = $('.part').eq(i).find('.num').attr('table_id');
+    //   temp.answer = $('.part').eq(i).find('input').val();
+    //   data.answers.push(temp);
+    // }
+    return data;
+  }
 
   // button的背景纹理和coins的纹理
   function texture(btns,coins){
