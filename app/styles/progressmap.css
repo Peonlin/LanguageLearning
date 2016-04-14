@@ -42,6 +42,7 @@ a:hover{
 /*--------------- left --------------------------------------*/
 .leftli{
   border-bottom: solid 1px gray;
+  padding-top: 5px;
 }
 .leftli.learned:hover{
   background-color: #909090;

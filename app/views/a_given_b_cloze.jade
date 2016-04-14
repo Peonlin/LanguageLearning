@@ -12,7 +12,7 @@ html
       - else
         - each item in lists
           .part
-            .num #{item._id}
+            .num(table_id= '#{item._id}') #{item.question}
             .text 
               .plain #{item.top}
             .text 
@@ -26,9 +26,6 @@ html
           -each item in lists
             .learn0
       #next Answer
-      .finish 
-        .desc <span>Congratulations ! </span> You have finished this unit.<br>
-          a.nextunit(href='nextunit') Continue to next unit?
 
           
   script(type="application/javascript", src="scripts/jquery-2.1.4.min.js")

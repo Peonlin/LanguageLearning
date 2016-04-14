@@ -12,7 +12,7 @@ html
       - each item in audios
         - if (item.top)
           .part.part1
-            .num #{item._id}
+            .num #{item.question}
             .text 
               .plain #{item.top}
               img.horn(src="../imgs/icon_sound.png" )
@@ -42,7 +42,7 @@ html
                 span.piece #{item.U9}
         - else
           .part.part2
-            .num #{item._id}
+            .num #{item.question}
             .scrambled
               - if (item.U1)
                 span.piece #{item.U1}
