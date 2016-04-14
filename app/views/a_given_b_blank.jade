@@ -13,7 +13,7 @@ html
         - each item in lists
           .part
             .interaction
-              .num #{item.question}
+              .num(table_id= '#{item._id}') #{item.question}
               .question 
                 span.ques Qeustion : 
                 img.horn(src="../imgs/icon_sound.png" )
@@ -34,9 +34,6 @@ html
                 .a1 #{item.bottom_1}
               - if (item.bottom_2)
                 .a1 #{item.bottom_2}
-        .finish 
-          .desc <span>Congratulations ! </span> You have finished this unit.<br>
-            a.nextunit(href='nextunit') Continue to next unit?
         .myprogress
           -each item in lists
             .learn0

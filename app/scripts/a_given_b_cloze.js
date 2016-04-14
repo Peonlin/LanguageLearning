@@ -84,7 +84,7 @@ function getAnswers(){
     temp.answer = $('.part').eq(i).find('input').val();
     data.answers.push(temp);
   }
-  return JSON.stringify(data);
+  return data;
 }
 function showAnswer(){
   var str = 'Answer: &nbsp&nbsp' + $('.active .answer').eq(0).text();
