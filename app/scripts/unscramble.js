@@ -75,9 +75,7 @@ function nextClick(){
   var index = 0;
   $('#next').click(function(){
     if(index >= length-1){
-      $('#next').css('display','none');
-      $('.part').css('display','none');
-      $('.finish').css('display','block');
+      sendAnswerAjax();
     }
     else{
       //如果还未输入
@@ -93,6 +91,35 @@ function nextClick(){
       }
     }
   });
+}
+function sendAnswerAjax(){
+  $.ajax({
+    url: 'nextType',
+    type: 'post',
+    data: getAnswers(),
+  })
+  .fail(function() {
+    alert('刷新失败，请重试！');
+  })
+}
+function getAnswers(){
+  var data = {};
+  // 当前所学习的语言、tour、unit、题目类型
+  // 比如http://localhost:3000/A_GIVEN_B_CLOZE%EF%BC%9Flanguage=en&tour=1&unit=2
+  data.type = window.location.pathname.substr(1);
+  var search = window.location.search.substr(1).split(/[\=\&]/g);
+  data.language = search[1];
+  data.tour = search[3];
+  data.unit = search[5];
+  // 每道题的答案信息，题目id、答案
+  data.answers = [];
+  for(var i=0;i<$('.part').length;i++){
+    var temp = {};
+    temp._id = $('.part').eq(i).find('.num').attr('table_id');
+    temp.answer = $('.part').eq(i).find('input').val();
+    data.answers.push(temp);
+  }
+  return data;
 }
 // 打乱顺序
 function randomOrder(ob){
