@@ -40,8 +40,13 @@ var data = obj[0].data;
 var i = 1;
 
 exports.init = function(req, res) {
-	while (i < data.length) {
-		var _set = data[i][0];
+	var set_tmp = 1;
+	while (i < data.length && data[i][2] != undefined) {
+		if (data[i][0] != undefined) {
+			if (data[i][0] != set_tmp)
+				set_tmp = data[i][0];
+		}
+		var _set = set_tmp;
 		var comment = data[i][1];
 		var question = data[i][2];
 		var sound_1 = data[i][3];
@@ -51,12 +56,10 @@ exports.init = function(req, res) {
 		var font_1 = data[i][7];
 		var sound_2 = data[i][8];
 		var language_2 = data[i][9];
-		var U1 = data[i][10];
-		var U2 = data[i][11];
-		var U3
+		
 		var usb = new USBModel({
 			_id: i,
-		    _set: data[i][0],
+		    _set: _set,
 		    comment: data[i][1],
 		    question: data[i][2],
 		    speaker_1: data[i][7],
@@ -99,21 +102,23 @@ exports.del = function(req, res) {
 };
 
 exports.open = function(req, res) {
-	USBModel.find().sort({'_id': 1}).exec(function(err, usb) {
+	USBModel.find().sort({'_id': 1}).exec(function(err, list) {
 		var set = 1;
 		var result = [];
 		for (var i = 0; i < list.length;) {
 			var set_tmp = [];
 			while (i < list.length && list[i]._set == set) {
+				list[i].question += 1;
 				set_tmp.push(list[i]);
 				i++;
+				//console.log(i);
 			}
 			set++;
 			result.push(set_tmp);
 		}
 		//需要获得应该返回的数值
 		if (req.cookies.account != null)
-			res.render("unscramble.jade", {title: "unscramble", audios: usb});
+			res.render("unscramble.jade", {title: "unscramble", audios: list});
 		else
 			res.redirect('/login');
 	});
