@@ -88,7 +88,7 @@ exports.open = function(req, res) {
 			//一次返回一个set
 			if (list[a]._set == temp) {
 				//将所有set_id相同的题目数组都存在一个数组之中
-				list[a].question += 1;
+				list[a].question = parseInt(list[a].question) + 1;
 				que[i] = list[a];
 				a++;
 				i++;
