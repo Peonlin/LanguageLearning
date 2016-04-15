@@ -40,6 +40,7 @@
 .language {
   line-height: 48px;
   font-size: 18px;
+  text-align: center;
 }
 .myselect{    
   font-size: 14px;
@@ -76,7 +77,7 @@
 #learn {
   position: absolute;
   right: 340px;
-  top: 100px;
+  top: 150px;
   z-index: 0;
 }
 

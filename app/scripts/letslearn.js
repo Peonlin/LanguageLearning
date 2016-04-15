@@ -26,18 +26,22 @@ $(document).ready(function() {
 			}
 		}
 		if(flag){
-			$.ajax({
-				url: 'xx',
-				type: 'post',
-				data: {
-					learn: $('#myselect1 .selected').text(),
-					mather:$('#myselect2 .selected').text(),
-					gender:$('#myselect3 .selected').text()
-				}
-			})
-			.fail(function() {
-				location.reload();
-			})
+			// $.ajax({
+			// 	url: 'xx',
+			// 	type: 'post',
+			// 	data: {
+			// 		learn: $('#myselect1 .selected').text(),
+			// 		mather:$('#myselect2 .selected').text(),
+			// 		gender:$('#myselect3 .selected').text()
+			// 	}
+			// })
+			// .fail(function() {
+			// 	location.reload();
+			// })
+
+			// 这个用于测试
+			window.location.href = 'progressmap';
+
 		}
 	})
 });
