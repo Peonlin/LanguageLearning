@@ -43,7 +43,17 @@ exports.getNext = function(req, res) {
 			res.send(res_url);
 		}
 		else {
-			console.log(i);
+			if (req.cookies.account != null && data[i][0] != undefined) {
+				var userModel = mongoose.model('Users');
+				userModel.update({username: req.cookies.account.username}, {
+					$set: {current_unit: data[i][0], current_tour: data[i][1], current_type: data[i][2]}
+				}, function(err) {
+					if (err) {
+						console.log(err);
+						return
+					}
+				});
+			}
 			res.send('/progressmap');
 		}
 	}
