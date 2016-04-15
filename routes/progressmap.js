@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 var UsersModel = mongoose.model('Users');
 exports.open = function(req, res) {
-	UsersModel.findOne({username:req.cookies.account.username}, function (err, user) {
+	if (req.cookies.account != null)
 		res.render("progressmap.jade", {title: "Progress map", tour: user.current_tour, unit: user.current_unit});
-	});
-    
+	else
+    	res.redirect('/login');
 };
