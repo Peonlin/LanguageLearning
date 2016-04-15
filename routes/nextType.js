@@ -8,7 +8,7 @@ exports.getNext = function(req, res) {
 	var tour = req.body.tour;
 	var unit = req.body.unit;
 	var type = req.body.type;
-
+	var isLast = 0;
 	var name = path.dirname(__dirname);
 	var obj = xlsx.parse(name + "/app/excel/SCRIPT.xlsx");
 	var data = obj[0].data;
@@ -21,20 +21,34 @@ exports.getNext = function(req, res) {
 				while (i < data.length && data[i][1] != unit) {
 					i++;
 				}
+				console.log(i);
 				while (i < data.length && data[i][2] != type) {
 					i++;
 				}
+				console.log(i);
 				if (i < data.length && i != data.length - 1) {
 					i++;
 				}
-				else
+				else {
 					console.log('last one');
+					isLast = 1;
+				}
 				break;
 			}
 		}
 	}
 	if (i < data.length) {
-		var res_url = '/' + data[i][2] + '?language=en&tour=' + tour + '&unit=' + unit + '&set=' + data[i][3];
-		res.send(res_url);
+		if (((data[i][0] != undefined && data[i][0] == tour && data[i][1] == unit) || data[i][0] == undefined) && !isLast) {
+			var res_url = '/' + data[i][2] + '?language=en&tour=' + tour + '&unit=' + unit + '&set=' + data[i][3];
+			res.send(res_url);
+		}
+		else {
+			console.log(i);
+			res.send('/progressmap');
+		}
+	}
+	else {
+		console.log(i);
+		res.send('/progressmap');
 	}
 };
