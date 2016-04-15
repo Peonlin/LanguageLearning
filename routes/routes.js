@@ -114,7 +114,6 @@ router.get('/progressmap', pmap.open);
 router.get('/letslearn',letsl.open);
 
 router.get('/begin_lesson', function(req, res) {
-	console.log(req.query.unit + "\n" + req.query.tour);
 	var unit = req.query.unit, tour = req.query.tour;
 	var name = path.dirname(__dirname);
 	var obj = xlsx.parse(name + "/app/excel/SCRIPT.xlsx");
