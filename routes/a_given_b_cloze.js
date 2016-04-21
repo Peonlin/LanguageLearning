@@ -34,7 +34,7 @@ var i = 1;
 exports.init = function(req, res) {
 	var set_tmp = 0;
 	var comment_tmp = "dsa";
-	while (i < data.length) {
+	while (i < data.length && data[i][3] != undefined) {
 		if (data[i][2] == 0) {
 			set_tmp = data[i][0];
 			comment_tmp = data[i][1];
