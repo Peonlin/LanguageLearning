@@ -1,3 +1,4 @@
+//A_GIVEN_B_BLANK题型的导入和数据的返回
 var path = require('path');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
@@ -7,6 +8,7 @@ var db = mongoose.connection;
 db.on('error', function(error) {
     console.log(error);
 });
+//指定数据库的格式，对应的字段名和类型
 var schema = new Schema({
 	_id: Number,
     _set: Number,
@@ -36,6 +38,7 @@ var i = 1;
 exports.init = function(req, res) {
 	var set_tmp = 0;
 	var comment_tmp = "dsa";
+	//表格格式处理
 	while (i < data.length) {
 		if (data[i][2] == 0) {
 			set_tmp = data[i][0];
@@ -54,7 +57,7 @@ exports.init = function(req, res) {
 		var bottom_tmp = data[i][7];
 		var bottom_1_tmp = data[i][8];
 		var bottom_2_tmp = data[i][9];
-
+		//将字段与表格数据对应
 		var b_font_tmp = data[i][12];
 		var list = new aggbModel({
 			_id: i,
@@ -73,7 +76,9 @@ exports.init = function(req, res) {
 		    b_font: b_font_tmp,
 		    bottom_3: data[i][10]
 		});
+		//对应数据以后存储数据
 		list.save();
+
 		//console.log(i);
 		i++;
 	}
@@ -99,6 +104,7 @@ exports.open = function(req, res) {
 	aggbModel.find().sort({'_id': 1}).exec(function(err, list) {
 		var set = 1;
 		var result = [];
+		//首先将数据按照set值来分组
 		for (var i = 0; i < list.length;) {
 			var set_tmp = [];
 			while (i < list.length && list[i]._set == set) {

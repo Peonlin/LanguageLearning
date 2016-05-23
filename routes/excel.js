@@ -7,10 +7,12 @@ var fs = require('fs');
 
 exports.open = function(req, res, next) {
 // write
+	//获得要下载的类型
 	var type = req.body.select;
 	var data;
 	//if (req.body.select == 'interactive')
 	switch(type) {
+		//根据类型来指定列的名字
 		case "narra":
 			data = [['Set', 'Random order?', 'Slide', 'Review?', 'Q=ti,A=v', 'Q=tv,A=i', 'Q=iv,A=t', 'Q=v,A=ti', 'Q=i,A=tv',
 				'Q=t,A=iv', 'Q=t,A=i', 'Q=t,A=v', 'Q=v,A=t', 'Q=v,A=i',	'Q=i,A=t', 'Q=i,A=v', 'Image filename', 
@@ -20,6 +22,7 @@ exports.open = function(req, res, next) {
 			data = [['Set',	'Comment', 'Question', 'A', 'A_font', 'Language', 'Speaker', 'B', 'B alternative I', 'B alternative II',
 			 	'B alternative III', 'B_font',	'Language',	'Speaker']];
 			var aggbModel = mongoose.model('a_given_b_blank');
+			//读出数据库里的值，写到对应的列里
 			aggbModel.find().sort({'_id': 1}).exec(function(err, list) {
 				for (var i = 0; i < list.length; i++) {
 					var tmp = [];
@@ -27,6 +30,7 @@ exports.open = function(req, res, next) {
 						list[i].bottom, list[i].bottom_1, list[i].bottom_2, list[i].bottom_3, list[i].b_font, list[i].b_language, list[i].b_speaker);
 					data.push(tmp);
 				}
+				//将数据写入文件中
 				var buffer = xlsx.build([{name: "mySheetName", data: data}]);
 				fs.writeFileSync('./A_GIVEN_B_BLANK.xlsx', buffer, 'binary');
 			});
@@ -150,6 +154,7 @@ exports.upload = function(req, res) {
     req.pipe(req.busboy);
     req.busboy.on('file', function (fieldname, file, filename) {
         console.log("Uploading: " + filename);
+        //存储文件在服务器中，再直接访问导入数据的路径，这样导入时读取的是新文件而不是旧文件
         fstream = fs.createWriteStream('./app/excel/' + filename);
         if (filename == 'A_GIVEN_B_CLOZE.xlsx') {
         	var aggbModel = mongoose.model('a_given_b_cloze');

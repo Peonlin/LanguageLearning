@@ -14,6 +14,7 @@ exports.getNext = function(req, res) {
 	var data = obj[0].data;
 	var i = 1;
 	for (i = 1; i < data.length; i++) {
+		//找到tour值相同的区域，然后找到下一个unit
 		if (data[i][0] != undefined) {
 			if (data[i][0] != tour)
 				continue;
@@ -37,6 +38,7 @@ exports.getNext = function(req, res) {
 			}
 		}
 	}
+	//根据题型的名字，和返回的题号
 	if (i < data.length) {
 		if (((data[i][0] != undefined && data[i][0] == tour && data[i][1] == unit) || data[i][0] == undefined) && !isLast) {
 			var res_url = '/' + data[i][2] + '?language=en&tour=' + tour + '&unit=' + unit + '&set=' + data[i][3];

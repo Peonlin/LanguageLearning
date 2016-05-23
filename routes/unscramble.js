@@ -1,3 +1,4 @@
+//UNSCRAMBLE题型的导入和返回
 var path = require('path');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
@@ -7,6 +8,7 @@ var db = mongoose.connection;
 db.on('error', function(error) {
     console.log(error);
 });
+//指定数据库的格式，对应的字段名和类型
 var schema = new Schema({
 	_id: Number,
     _set: Number,
@@ -42,6 +44,7 @@ var i = 1;
 exports.init = function(req, res) {
 	var set_tmp = 1;
 	while (i < data.length && data[i][2] != undefined) {
+		//表格格式处理
 		if (data[i][0] != undefined) {
 			if (data[i][0] != set_tmp)
 				set_tmp = data[i][0];
@@ -105,6 +108,7 @@ exports.open = function(req, res) {
 	USBModel.find().sort({'_id': 1}).exec(function(err, list) {
 		var set = 1;
 		var result = [];
+		//首先将数据按照set值来分组
 		for (var i = 0; i < list.length;) {
 			var set_tmp = [];
 			while (i < list.length && list[i]._set == set) {
@@ -116,6 +120,7 @@ exports.open = function(req, res) {
 			set++;
 			result.push(set_tmp);
 		}
+		//需要获得应该返回的数值
 		var unit = req.query.unit;
 		var tour = req.query.tour;
 		var set = req.query.set - 1;

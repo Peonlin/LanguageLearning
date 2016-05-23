@@ -1,3 +1,4 @@
+//LETTER_NUMBER_MATCH题型的导入和返回
 var path = require('path');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
@@ -7,6 +8,7 @@ var db = mongoose.connection;
 db.on('error', function(error) {
     console.log(error);
 });
+//指定数据库的字段
 var schema = new Schema({
 	_id: Number,
     _set: Number,
@@ -27,6 +29,7 @@ var schema = new Schema({
 var leModel = mongoose.model('letter_number_match', schema);
 var xlsx = require("node-xlsx");
 var name = path.dirname(__dirname);
+//读取excel文件
 var obj = xlsx.parse(name + "/app/excel/LETTER_NUMBER_MATCH.xlsx");
 //var audio_path = name + "/app/audio/F1_0000.mp3";
 var data = obj[0].data;
@@ -36,12 +39,14 @@ exports.init = function(req, res) {
 	var set_tmp = 0;
 	var comment_tmp = "dsa";
 	while (i < data.length) {
+		//表格格式处理
 		if (data[i][2] == 0) {
 			set_tmp = data[i][0];
 			comment_tmp = data[i][1];
 		}
 		var _set_tmp = set_tmp;
 		var comment_tmp = comment_tmp;
+		//读取表格内容与数据库字段对应
 		var list = new leModel({
 			_id: i,
 		    _set: _set_tmp,
@@ -58,6 +63,7 @@ exports.init = function(req, res) {
 		    part_c: data[i][9],
 		    font_c: data[i][10]
 		});
+		//保存内容
 		list.save();
 		i++;
 	}
@@ -108,7 +114,7 @@ exports.open = function(req, res) {
 			"set_id": temp,
 			"question": que
 		});
-
+		//获得tour unit set值，将对应题目返回
 		var unit = req.query.unit;
 		var tour = req.query.tour;
 		var set = req.query.set - 1;

@@ -1,3 +1,4 @@
+//NARRATIVE题型的导入和返回
 var path = require('path');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
@@ -6,6 +7,7 @@ var db = mongoose.connection;
 db.on('error', function(error) {
     console.log(error);
 });
+//表格字段设置
 var schema = new Schema({
 	_id: Number,
     _set: Number,
@@ -29,6 +31,7 @@ var imgModel = mongoose.model('image_index', img_schema);
 
 var xlsx = require("node-xlsx");
 var name = path.dirname(__dirname);
+//读取excel文件
 var nar_obj = xlsx.parse(name + "/app/excel/Narration.xlsx");
 var image_index = xlsx.parse(name + "/app/excel/Image-index.xlsx");
 //var audio_path = name + "/app/audio/F1_0000.mp3";
@@ -38,6 +41,7 @@ var i = 1;
 
 exports.init_img = function(req, res) {
 	var id = 1;
+	//读取图像文件，并将图像内容存至数据库中方便使用
 	while (i < img_data.length) {
 		if (img_data[i][0] != undefined) {
 			var j = 0;
@@ -70,6 +74,7 @@ exports.init = function(req, res) {
 	var slide_tmp = 1;
 	var text_arr = [];
 	var type_tmp = data[1][2];
+	//将narration的题目导入，其中的图片文件连接到图片库获取内容
 	while (i < data.length) {
 		if (data[i][3] == undefined)
 			break;
@@ -110,6 +115,7 @@ exports.init = function(req, res) {
 			var tmp1;
 
 			var text_arr = [];
+			//获得图片的名字和描述
 			text_arr.push({"image_filename": img_filename, "associated_texts": img_arr});
 			var list = new naModel({
 				_id: id,
@@ -150,6 +156,7 @@ exports.open = function(req, res) {
 		var cur_set = 1;
 		var cur_type;
 		var flag = 1;
+		//按照set分类
 		for (var i = 0; i < list.length;) {
 			var cur_slide = 1;
 			while (i < list.length && list[i]._set == cur_set) {
@@ -169,6 +176,7 @@ exports.open = function(req, res) {
 			set_arr = [];
 			cur_set++;
 		}
+		//根据unit tour set值返回
 		var unit = req.query.unit;
 		var tour = req.query.tour;
 		var set = req.query.set - 1;

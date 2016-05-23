@@ -1,3 +1,4 @@
+//A_GIVEN_B_CLOZE题型的导入和数据的返回
 var path = require('path');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
@@ -6,6 +7,7 @@ var db = mongoose.connection;
 db.on('error', function(error) {
     console.log(error);
 });
+//指定数据库的格式，对应的字段名和类型
 var schema = new Schema({
 	_id: Number,
     _set: Number,
@@ -35,13 +37,14 @@ exports.init = function(req, res) {
 	var set_tmp = 0;
 	var comment_tmp = "dsa";
 	while (i < data.length && data[i][3] != undefined) {
+		//表格格式处理
 		if (data[i][2] == 0) {
 			set_tmp = data[i][0];
 			comment_tmp = data[i][1];
 		}
 		var _set_tmp = set_tmp;
 		var comment_tmp = comment_tmp;
-
+		//将字段与表格数据对应
 		var list = new agbcModel({
 			_id: i,
 		    _set: _set_tmp,
@@ -58,6 +61,7 @@ exports.init = function(req, res) {
 		    b_language: data[i][11],
 		    b_font: data[i][10]
 		});
+		//存储
 		list.save();
 		i++;
 	}
@@ -72,6 +76,7 @@ exports.open = function(req, res) {
 	agbcModel.find().sort({'_id': 1}).exec(function(err, list) {
 		var set = 1;
 		var result = [];
+		//首先将数据按照set值来分组
 		for (var i = 0; i < list.length;) {
 			var set_tmp = [];
 			while (i < list.length && list[i]._set == set) {

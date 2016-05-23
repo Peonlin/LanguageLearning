@@ -30,6 +30,7 @@ exports.create = function (req, res) {
             if (err) {
                 return res.json({err:err});
             }
+            //登录存储cookie值
             res.cookie('account', {username: req.body.username}, {maxAge: 6000000});
             return res.json({message: 'success'});
         });

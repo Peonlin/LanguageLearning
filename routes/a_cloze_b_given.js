@@ -1,3 +1,4 @@
+//A_CLOZE_B_GIVEN题型的导入和数据的返回
 var path = require('path');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
@@ -7,6 +8,7 @@ var db = mongoose.connection;
 db.on('error', function(error) {
     console.log(error);
 });
+//指定数据库的格式，对应的字段名和类型
 var schema = new Schema({
 	_id: Number,
     _set: Number,
@@ -27,6 +29,7 @@ var schema = new Schema({
 var acbgModel = mongoose.model('a_cloze_b_given', schema);
 var xlsx = require("node-xlsx");
 var name = path.dirname(__dirname);
+//打开excel文件
 var obj = xlsx.parse(name + "/app/excel/A_CLOZE_B_GIVEN.xlsx");
 //var audio_path = name + "/app/audio/F1_0000.mp3";
 var data = obj[0].data;
@@ -36,13 +39,14 @@ exports.init = function(req, res) {
 	var set_tmp = 0;
 	var comment_tmp = "dsa";
 	while (i < data.length) {
+		//表格格式处理
 		if (data[i][2] == 0) {
 			set_tmp = data[i][0];
 			comment_tmp = data[i][1];
 		}
 		var _set_tmp = set_tmp;
 		var comment_tmp = comment_tmp;
-		
+		//将字段与表格数据对应
 		var list = new acbgModel({
 			_id: i,
 		    _set: _set_tmp,
@@ -59,6 +63,7 @@ exports.init = function(req, res) {
 		    b_speaker: data[i][11],
 		    b_font: data[i][10] 
 		});
+		//对应数据以后存储数据
 		list.save();
 		i++;
 	}
@@ -85,6 +90,7 @@ exports.open = function(req, res) {
 	acbgModel.find().sort({'_id': 1}).exec(function(err, list) {
 		var set = 1;
 		var result = [];
+		//首先将数据按照set值来分组
 		for (var i = 0; i < list.length;) {
 			var set_tmp = [];
 			while (i < list.length && list[i]._set == set) {
